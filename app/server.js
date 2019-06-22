@@ -7,6 +7,7 @@ var app = express();
 PORT = process.env.PORT || 8080;
 
 // We use middleware to use css and javascript on our html pages
+// The server will have its route directory in app/public/
 app.use(express.static("public"));
 
 // We use a this code to parse code into json format
