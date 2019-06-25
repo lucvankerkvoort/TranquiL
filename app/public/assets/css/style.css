@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 body {
     font-family: futura-pt, sans-serif;
     color: black;
@@ -10,18 +12,23 @@ main {
     flex: 1 0 auto;
 }
 
+>>>>>>> master
 #mainBody {
     background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
     /* -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover; */
     background-size: cover;
-
 }
 
+<<<<<<< HEAD
+.navbar {
+    background-color: rgba(152, 191, 234, 0);
+=======
 .mainHeader {
     
     background-color:rgba(152,191,234,0);
+>>>>>>> master
 }
 
 .nav-link {
@@ -32,6 +39,8 @@ main {
     float: left;
 }
 
+<<<<<<< HEAD
+=======
 .container  {
     display: flex;
     position: absolute;
@@ -51,18 +60,21 @@ main {
     color: black;
 }
 
+>>>>>>> master
 #mainTextBox {
     margin-top: 100px;
     margin-left: 20%;
     padding: 10px;
     height: 250px;
     width: 55%;
-    background-color: rgba(152,191,234,0.5);
+    background-color: rgba(152, 191, 234, 0.5);
     opacity: 0.8;
     position: relative;
-    
-} 
+}
 
+<<<<<<< HEAD
+#textLogo {
+=======
 #registerModal{
     text-align: center;
 }
@@ -76,20 +88,29 @@ main {
     font-size: 100px;
     background-color: transparent;
     border: none;
+>>>>>>> master
 }
 
 #contentText {
     float: right;
     /* margin-top: 30%%; */
     font-size: 35px;
-    position: absolute; 
+    position: absolute;
     bottom: 0;
-    right:15px;
-    clear:right
+    right: 15px;
+    clear: right;
 }
 
 footer {
+<<<<<<< HEAD
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(152, 191, 234, 0.6);
+=======
     background-color: rgba(152,191,234,0.6);
+>>>>>>> master
     color: black;
     height:40px;
     
