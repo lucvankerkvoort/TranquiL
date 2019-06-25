@@ -35,7 +35,7 @@ router.post("/api/survey", function(req, res) {
     console.log({ score });
     userInfo.create("score", [score], function(result) {
       console.log({ result });
-      if (AffectedRows > 0) {
+      if (result.affectedRows > 0) {
         res.json(result);
       } else {
         res.status(500).end();
