@@ -15,19 +15,26 @@ router.get("/", function(req, res) {
   // res.render("index") if we need handlebars
 });
 
+//the router gives back the survey page when we go to the route for it
 router.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/survey.html"));
 });
+
+// We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
+  // we capture the user input from the html file
   var userInput = req.body;
   console.log(userInput);
+
+  // This function calculates the score of the user
   function scoreCalculator(userInput) {
     var score = 0;
     for (let i = 0; i < userInput.data.length; i++) {
       score += parseInt(userInput.data[i]);
     }
-    // console.log({ score });
+    // it runs the assessment function
     assessment(userInput, score);
+    // it pushes it to the database
     postToDatabase(score);
   }
 
