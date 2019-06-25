@@ -27,88 +27,88 @@ userInput.password = mockPassword;
 //                - If current username already exists then user must choose another username
 // 2. If username and password are BOTH valid, then the new user's data will get stored in our database
 // 3. Once user fills out the form, user is automatically logged in and their results are generated
-$("#sign-up-button").on("click", function(event) {
-  event.preventDefault();
-  var username = $("#input-username").val();
-  var password = $("#input-password").val();
-  var existingUsernameArray = [];
+// $("#sign-up-button").on("click", function(event) {
+//   event.preventDefault();
+//   var username = $("#inputID").val();
+//   var password = $("#input-password").val();
+//   var existingUsernameArray = [];
 
-  if (username === "") {
-    // if user's username input is blank
-    $("#existing-username-text").remove();
-    $("#password-length-wrong").remove();
-    $("#blank-username-text").remove();
-    blankUsername(); // Appends an error message below input field
-  } else if (
-    existingUsernameArray.includes(username) === true &&
-    (password.length >= 8 && password.length <= 20)
-  ) {
-    // if there is already an existing username
-    $("#existing-username-text").remove();
-    $("#password-length-wrong").remove();
-    $("#blank-username-text").remove();
-    takenUsername(); // Appends existing username error message below input field
-  } else if (
-    existingUsernameArray.includes(username) === false &&
-    (password.length < 8 || password.length > 20)
-  ) {
-    // if the password is an invalid length
-    $("#existing-username-text").remove();
-    $("#password-length-wrong").remove();
-    $("#blank-username-text").remove();
-    invalidPasswordLength(); // Appends invalid password length message below input field
-  } else if (
-    existingUsernameArray.includes(username) === true &&
-    (password.length < 8 || password.length > 20)
-  ) {
-    // if there is already an existing username and password is an invalid length
-    $("#existing-username-text").remove();
-    $("#password-length-wrong").remove();
-    $("#blank-username-text").remove();
-    takenUsername();
-    invalidPasswordLength();
-  } else if (
-    existingUsernameArray.includes(username) === false && // *SUCCESS CASE = LUC*
-    (password.length >= 8 && password.length <= 20)
-  ) {
-    // if user's username does not exist, and password is WITHIN length
-    // MORE LOGIC HERE
-  }
-});
+//   if (username === "") {
+//     // if user's username input is blank
+//     $("#existing-username-text").remove();
+//     $("#password-length-wrong").remove();
+//     $("#blank-username-text").remove();
+//     blankUsername(); // Appends an error message below input field
+//   } else if (
+//     existingUsernameArray.includes(username) === true &&
+//     (password.length >= 8 && password.length <= 20)
+//   ) {
+//     // if there is already an existing username
+//     $("#existing-username-text").remove();
+//     $("#password-length-wrong").remove();
+//     $("#blank-username-text").remove();
+//     takenUsername(); // Appends existing username error message below input field
+//   } else if (
+//     existingUsernameArray.includes(username) === false &&
+//     (password.length < 8 || password.length > 20)
+//   ) {
+//     // if the password is an invalid length
+//     $("#existing-username-text").remove();
+//     $("#password-length-wrong").remove();
+//     $("#blank-username-text").remove();
+//     invalidPasswordLength(); // Appends invalid password length message below input field
+//   } else if (
+//     existingUsernameArray.includes(username) === true &&
+//     (password.length < 8 || password.length > 20)
+//   ) {
+//     // if there is already an existing username and password is an invalid length
+//     $("#existing-username-text").remove();
+//     $("#password-length-wrong").remove();
+//     $("#blank-username-text").remove();
+//     takenUsername();
+//     invalidPasswordLength();
+//   } else if (
+//     existingUsernameArray.includes(username) === false && // *SUCCESS CASE = LUC*
+//     (password.length >= 8 && password.length <= 20)
+//   ) {
+//     // if user's username does not exist, and password is WITHIN length
+//     // MORE LOGIC HERE
+//   }
+// });
 
-// (For existing users that are logging in)
-$("#login-button").on("click", function(event) {
-  event.preventDefault();
-  var username = $("#login-username").val();
-  var password = $("#login-password").val();
+// // (For existing users that are logging in)
+// $("#login-button").on("click", function(event) {
+//   event.preventDefault();
+//   var username = $("#login-username").val();
+//   var password = $("#login-password").val();
 
-  // MySQL query to loop through username and password in database
-  // if statement checking for matching username and password in database
-  // logic to give the current user their survey reponse from database
+//   // MySQL query to loop through username and password in database
+//   // if statement checking for matching username and password in database
+//   // logic to give the current user their survey reponse from database
 
-  // else if to display error message that username and password do not match any of those in the database
-  wrongUsernamePassword();
+//   // else if to display error message that username and password do not match any of those in the database
+//   wrongUsernamePassword();
 
-  // clear input field
-  $("#login-username").val("");
-  $("#login-password").val("");
-});
-// 1. Capture's user's inputs from login flow and compares it to existing user IDs usernames and passwords in the database
-//      - If username and password do not match, error message displayed below input bars stating to retype info
-// 2. If username and password match, user is logged in and results from previous form input is displayed
-//
+//   // clear input field
+//   $("#login-username").val("");
+//   $("#login-password").val("");
+// });
+// // 1. Capture's user's inputs from login flow and compares it to existing user IDs usernames and passwords in the database
+// //      - If username and password do not match, error message displayed below input bars stating to retype info
+// // 2. If username and password match, user is logged in and results from previous form input is displayed
+// //
 
-/* PSEUDOCODED SEARCH BAR FUNCTIONALITY (GREG) (NICE-TO-HAVE)//////////////
-// 1. Search Bar would exist at top of the page
-// 2. Users can filter through categories in the search bar
-//         - Categories: Yoga, Meditation, Exercise
-// 3. Conditions for the filter
-//         - Filter would take inputs as strings
-//         - Filter would check for matching sequences between the user's inputs and the values in that category in the database
-//         - Filtered search would render below the search bar in a box that contains the options
-//         - Options would be dynamic and would maybe be able to be clicked so that they would get appended in the right section
-//         - Filter would contain a reset button as well
-*/
+// /* PSEUDOCODED SEARCH BAR FUNCTIONALITY (GREG) (NICE-TO-HAVE)//////////////
+// // 1. Search Bar would exist at top of the page
+// // 2. Users can filter through categories in the search bar
+// //         - Categories: Yoga, Meditation, Exercise
+// // 3. Conditions for the filter
+// //         - Filter would take inputs as strings
+// //         - Filter would check for matching sequences between the user's inputs and the values in that category in the database
+// //         - Filtered search would render below the search bar in a box that contains the options
+// //         - Options would be dynamic and would maybe be able to be clicked so that they would get appended in the right section
+// //         - Filter would contain a reset button as well
+// */
 
 function scoreCalculator(userInput) {
   var score = 0;
