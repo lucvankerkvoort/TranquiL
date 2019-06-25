@@ -11,21 +11,27 @@ var dataOutput = {
     });
   },
   // we read specific columns from the database
-  selectColumn: function(cb) {
+  selectColumn: function(col, cb) {
     orm.selectColumn("data_output", col, function(res) {
       cb(res);
     });
   },
+  // we read a specific value from the database
+  selectValue: function(col, val, cb) {
+    orm.selectValue("data_output", col, val, function(res) {
+      cb(res);
+    });
+  },
   // We insert new data into the database
-  create: function(cb) {
+  create: function(col, val, cb) {
     orm.create("data_output", col, val, function(res) {
       cb(res);
     });
   },
   // We update certain values in the database
-  update: function(cb) {
+  update: function(input, val, cb) {
     orm.update("data_output", input, val, function(res) {
-      res;
+      cb(res);
     });
   }
 };
