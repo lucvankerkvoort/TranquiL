@@ -29,7 +29,7 @@ userInput.password = mockPassword;
 // 3. Once user fills out the form, user is automatically logged in and their results are generated
 // $("#sign-up-button").on("click", function(event) {
 //   event.preventDefault();
-//   var username = $("#input-username").val();
+//   var username = $("#inputID").val();
 //   var password = $("#input-password").val();
 //   var existingUsernameArray = [];
 
