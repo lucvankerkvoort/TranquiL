@@ -10,8 +10,8 @@ CREATE TABLE user_info
     (30),
     password VARCHAR(45),
     name VARCHAR(45),
-    PRIMARY KEY
-    (id)
+    score INT (10),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE data_output

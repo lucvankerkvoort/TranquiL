@@ -65,7 +65,7 @@ var orm = {
     queryString += ") ";
     queryString += "VALUES (";
     queryString += printQuestionMarks(val.length);
-    queryString += ");";
+    queryString += ") ;";
 
     console.log(queryString);
     connection.query(queryString, function(err, result) {

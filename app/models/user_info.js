@@ -11,21 +11,21 @@ var userInfo = {
     });
   },
   // we use selectColumn to target specific columns in the table
-  selectColumn: function(cb) {
+  selectColumn: function(col, cb) {
     orm.selectColumn("user_info", col, function(res) {
       cb(res);
     });
   },
   // We use create to add data to the database
-  create: function(cb) {
+  create: function(col, val, cb) {
     orm.create("user_info", col, val, function(res) {
       cb(res);
     });
   },
   // We use update to set new values to certain columns in the database
-  update: function(cb) {
+  update: function(input, val, cb) {
     orm.update("user_info", input, val, function(res) {
-      res;
+      cb(res);
     });
   }
 };
