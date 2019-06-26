@@ -9,15 +9,35 @@ var express = require("express");
 // We require the Router method from express
 var router = express.Router();
 
+var id;
+// HTML ROUTES
+// ----------------------------------------------------------------------
 // We set the route for our home page
 router.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/main.html"));
+  res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
   // res.render("index") if we need handlebars
 });
 
 //the router gives back the survey page when we go to the route for it
 router.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/survey.html"));
+  res.sendFile(path.join(__dirname, "../views/test_survey.html"));
+});
+
+// API ROUTES
+// ----------------------------------------------------------------------
+
+router.post("/api/registration", function(req, res) {
+  var userProfile = req.body;
+  console.log(userProfile);
+
+  userInfo.create(
+    ["username", "password", "name"],
+    [userProfile.userId, userProfile.password, userProfile.name],
+    function(result) {
+      console.log(result.insertId);
+      id = result.insertId;
+    }
+  );
 });
 
 // We run logic to calculate the user score and push it into the database
@@ -32,15 +52,13 @@ router.post("/api/survey", function(req, res) {
     for (let i = 0; i < userInput.data.length; i++) {
       score += parseInt(userInput.data[i]);
     }
-    // it runs the assessment function
-    assessment(userInput, score);
     // it pushes it to the database
     postToDatabase(score);
   }
 
   function postToDatabase(score) {
     console.log({ score });
-    userInfo.create("score", [score], function(result) {
+    userInfo.create(["score"], [score], function(result) {
       console.log({ result });
       if (result.affectedRows > 0) {
         res.json(result);
@@ -50,40 +68,6 @@ router.post("/api/survey", function(req, res) {
     });
   }
   scoreCalculator(userInput);
-
-  function assessment(userInput, score) {
-    // console.log({ userInput });
-    // console.log(userInput.category);
-    // create cases where we check the scores with the corresponding database tables
-    // each case will start a function that will return a random input video in the category set in the switch case
-    switch (userInput.category) {
-      case "meditation":
-        // set a function to work out a random meditation video in the stress level coming from the score
-        meditation(score);
-        break;
-      case "yoga":
-        // set a function to work out a random yoga video in the stress level coming from the score
-        yoga(score);
-        break;
-      case "exercise":
-        //   set a fucntion to work out a random exercise video in the stress level coming from the score
-        exercise(score);
-        break;
-    }
-  }
-
-  // this function takes the score and then
-  function meditation(data) {
-    console.log(data);
-  }
-
-  function yoga(data) {
-    console.log(data);
-  }
-
-  function exercise(data) {
-    console.log(data);
-  }
 });
 // We set the route for our first page
 router.get("/survey/q1", function(req, res) {
