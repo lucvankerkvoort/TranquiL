@@ -9,33 +9,41 @@ var express = require("express");
 // We require the Router method from express
 var router = express.Router();
 
-var id;
+var id = [];
 // HTML ROUTES
 // ----------------------------------------------------------------------
 // We set the route for our home page
 router.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
-  // res.render("index") if we need handlebars
 });
 
-//the router gives back the survey page when we go to the route for it
+// We set the route for our survey page
 router.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/test_survey.html"));
+});
+
+// We set the route to our results page
+router.get("/result", function(req, res) {
+  res.sendFile(path.join(__dirname, "../views/results.html"));
 });
 
 // API ROUTES
 // ----------------------------------------------------------------------
 
+// This is the post request for the registration
 router.post("/api/registration", function(req, res) {
   var userProfile = req.body;
   console.log(userProfile);
 
+  // Here we connect to the database using the ORM and sending all the data to the table
   userInfo.create(
     ["username", "password", "name"],
     [userProfile.userId, userProfile.password, userProfile.name],
     function(result) {
-      console.log(result.insertId);
+      // We get back the ID of the user so we can match the score from the survey with the user
       id = result.insertId;
+      console.log({ id });
+      res.json(id);
     }
   );
 });
@@ -56,8 +64,11 @@ router.post("/api/survey", function(req, res) {
     postToDatabase(score);
   }
 
+  // I have to figure out a way to retrieve the ID of the username and password posted in the registration
+  // so we can link the score to the same row
   function postToDatabase(score) {
     console.log({ score });
+    // I have to change this to an userInfo.update and then use the ID of the user that I get as a result from /api/registration
     userInfo.create(["score"], [score], function(result) {
       console.log({ result });
       if (result.affectedRows > 0) {

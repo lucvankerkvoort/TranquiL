@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect(function(err) {
-  if (err) throw err;
+  // if (err) throw err;
   console.log("you are connected through" + connection.threadId);
 });
 
