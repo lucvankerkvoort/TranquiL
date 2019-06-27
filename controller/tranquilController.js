@@ -15,34 +15,34 @@ var id = [];
 
 // WORKING ROUTES
 // We set the route for our home page
-// router.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/main.html"));
-// });
-
-// // We set the route for our survey page
-// router.get("/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/survey.html"));
-// });
-
-// // We set the route to our results page
-// router.get("/result", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/results.html"));
-// });
-
-// TEST ROUTES
 router.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
+  res.sendFile(path.join(__dirname, "../views/main.html"));
 });
 
 // We set the route for our survey page
 router.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/test_survey.html"));
+  res.sendFile(path.join(__dirname, "../views/survey.html"));
 });
 
 // We set the route to our results page
 router.get("/result", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/results.html"));
 });
+
+// TEST ROUTES
+// router.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
+// });
+
+// // We set the route for our survey page
+// router.get("/survey", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../views/test_survey.html"));
+// });
+
+// // We set the route to our results page
+// router.get("/result", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../views/results.html"));
+// });
 // API ROUTES
 // ----------------------------------------------------------------------
 
