@@ -1,21 +1,21 @@
-var profiles = require("./user-profiles");
+// var profiles = require("./user-profiles");
 
-var userInput = {
-  name: "",
-  password: "",
-  category: "",
-  data: []
-};
+// var userInput = {
+//   name: "",
+//   password: "",
+//   category: "",
+//   data: []
+// };
 
-var mockName = "Luc";
-var mockPassword = "Tang";
-var mockCategory = "yoga";
-var mockInput = [5, 7, 9, 5, 4];
+// var mockName = "Luc";
+// var mockPassword = "Tang";
+// var mockCategory = "yoga";
+// var mockInput = [5, 7, 9, 5, 4];
 
-userInput.data = mockInput;
-userInput.category = mockCategory;
-userInput.name = mockName;
-userInput.password = mockPassword;
+// userInput.data = mockInput;
+// userInput.category = mockCategory;
+// userInput.name = mockName;
+// userInput.password = mockPassword;
 
 // PSEUDOCODED USER AUTHENTICATION (GREG) ////////////////
 // (For sign-up flow)
@@ -32,7 +32,13 @@ userInput.password = mockPassword;
 //   var username = $("#inputID").val();
 //   var password = $("#input-password").val();
 //   var existingUsernameArray = [];
-
+$("#register-submit").on("click", function(event) {
+  event.preventDefault();
+  var userInput = {
+    name: $("#input-name").val(),
+    userId: $("#input-userId").val(),
+    password: $("#input-password").val()
+  };
 //   if (username === "") {
 //     // if user's username input is blank
 //     $("#existing-username-text").remove();
