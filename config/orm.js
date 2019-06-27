@@ -37,7 +37,7 @@ function objToSql(ob) {
 //  We create an object with methods to do our SQL injections
 var orm = {
   // The first method is read, which we will use to read a table in the database
-  read: function(table, cb) {
+  all: function(table, cb) {
     // We create our query with a parameter of table which will be inputted in the model
     var queryString = "SELECT * FROM " + table;
     console.log(queryString);

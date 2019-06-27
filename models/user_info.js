@@ -4,10 +4,10 @@ var orm = require("../config/orm");
 // We create an object to loop through the first table in the database
 var userInfo = {
   // We use the read method to get the info from the database
-  read: function(cb) {
-    orm.read("user_info", function(res) {
+  all: function(cb) {
+    orm.all("user_info", function(res) {
       cb(res);
-      console.log(res);
+      // console.log(res);
     });
   },
   // we use selectColumn to target specific columns in the table
