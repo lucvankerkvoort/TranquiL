@@ -14,12 +14,12 @@ var id = [];
 // ----------------------------------------------------------------------
 // We set the route for our home page
 router.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
+  res.sendFile(path.join(__dirname, "../views/main.html"));
 });
 
 // We set the route for our survey page
 router.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/test_survey.html"));
+  res.sendFile(path.join(__dirname, "../views/survey.html"));
 });
 
 // We set the route to our results page
@@ -40,7 +40,7 @@ router.post("/api/registration", function(req, res) {
     ["username", "password", "name"],
     [userProfile.userId, userProfile.password, userProfile.name],
     function(result) {
-      // We get back the ID of the user so we can match the score from the survey with the user
+      // We get back the ID of the user so we can match the score from the survey with the username password
       id = result.insertId;
       console.log({ id });
       res.json(id);
