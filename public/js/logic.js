@@ -1,3 +1,50 @@
+
+//When we click the register submit button, we will check for userId and password requirements//
+var userInfo;
+
+$("#register-submit").on("click", function(event) {
+  event.preventDefault();
+  $(".input-field").trigger("reset");
+    userInfo = {
+    name: $("#input-name").val(),
+    userId: $("#input-userId").val(),
+    password: $("#input-password").val()
+
+    };
+  blankUsername();
+};
+
+function blankUsername() {
+  if (userInfo.userId === "") {
+    $("small").text("Please type a valid userId.");
+  }
+  else checkPasswordLength();
+
+function checkPasswordLength() {
+  if (userInfo.password.length < 8) {
+    $("small").text("Your password needs to have between 8-20 characters");
+  }
+  else checkUserId();
+
+}
+function checkUserId() {
+  $.ajax("/api/registration", {
+    type: "POST",
+    data: userInfo
+  }).then(function(data) {
+    console.log("checking against existing usernames");
+    //here we need the router.post in the controller to check if the userId exists in the db.
+    //it should check req.params or req.body?//
+    //it should res.json(true) if userId is valid and doesn't exist in the db.
+    //it should return res.json(false) if userId already exists.
+    if (data) { 
+      $("small").text("UserId " + userInfo.userId + " successfully created.");
+    }
+    else $("small").text("The userId" + userInfo.userId + " already exists. Try a different one.")
+  })
+}
+
+
 // var profiles = require("./user-profiles");
 
 // var userInput = {
@@ -32,13 +79,8 @@
 //   var username = $("#inputID").val();
 //   var password = $("#input-password").val();
 //   var existingUsernameArray = [];
-$("#register-submit").on("click", function(event) {
-  event.preventDefault();
-  var userInput = {
-    name: $("#input-name").val(),
-    userId: $("#input-userId").val(),
-    password: $("#input-password").val()
-  };
+
+
 //   if (username === "") {
 //     // if user's username input is blank
 //     $("#existing-username-text").remove();
@@ -161,26 +203,20 @@ function exercise(data) {
   console.log(data);
 }
 
-function blankUsername() {
-  var blankUsernameContainer = $("<small>");
-  blankUsernameContainer.addClass("form-text text-muted blank-username-text");
-  blankUsernameContainer.text("Please type a valid username.");
-  $(".username-input-form").append(blankUsernameContainer);
-}
 
-function takenUsername() {
-  var wrongUsernameContainer = $("<small>");
-  wrongUsernameContainer.addClass(
-    "form-text text-muted existing-username-text"
-  );
-  wrongUsernameContainer.text(
-    "This username is already taken. Please go bo back to the login screen or use a different username."
-  );
-  $(".username-input-form").append(wrongUsernameContainer);
-}
+// function takenUsername() {
+//   // var wrongUsernameContainer = $("<small>");
+//   wrongUsernameContainer.addClass(
+//     "form-text text-muted existing-username-text"
+//   );
+//   wrongUsernameContainer.text(
+//     "This username is already taken. Please go bo back to the login screen or use a different username."
+//   );
+//   $(".username-input-form").append(wrongUsernameContainer);
+// }
 
-function invalidPasswordLength() {
-  var invalidPasswordContainer = $("<small>");
+function checkPasswordLength() {
+  // var invalidPasswordContainer = $("<small>");
   invalidPasswordContainer.addClass(
     "form-text text-muted password-length-wrong"
   );
@@ -190,7 +226,7 @@ function invalidPasswordLength() {
 
 function wrongUsernamePassword() {
   $(".wrong-loginInfo-text").remove();
-  var loginErrorContainer = $("<small>");
+  // var loginErrorContainer = $("<small>");
   loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
   loginErrorContainer.text(
     "Your username and/or password information are incorrect. Please try again."
