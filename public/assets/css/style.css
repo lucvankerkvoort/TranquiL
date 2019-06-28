@@ -148,3 +148,9 @@ footer {
     height:40px;
     
 }
+
+#footer-content {
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
