@@ -25,22 +25,22 @@
 		<script src="https://code.jquery.com/jquery.js"></script>
 	</head>
 
-	<body>
+	<body id="results-page">
 		<header>
-		<nav class="navbar z-depth-0">
-			<div id="logoNav">
-				<h1>(Logo) Tranquil</h1>
-			</div>
-			<!--Nav Bar-->
-			<ul class="nav justify-content-end">
+			<!-- Header Nav Section    -->
+			<nav class="mainHeader z-depth-0">
 				
-				<li class="nav-item">
-					<a class="nav-link active " href="/">Logout</a>
-				</li>
-
-			</ul>
-		</nav>
+				<div class="nav-wrapper">
+	
+					<a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
+	
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li><a class="black-text" href="/">Home</a></li>
+					</ul>
+				</div>
+			</nav>
 		</header>
+		
 		<!--div for stress meter, boiler plate -->
 		<div class="container">
 			<!-- Page Content goes here -->
@@ -236,13 +236,14 @@
 			type="text/javascript"
 			src="js/materialize.js"
 		></script>
-		<footer class="page-footer">
+		   <!-- Site Footer -->
+		   <footer style="position:fixed;bottom:0;left:0;width:100%;">
+           
 			<div class="footer-copyright">
-				<div class="container">
-					© 2014 Copyright Text
-					<a class="grey-text text-lighten-4 right" href="/"
-						>home</a
-					>
+	
+				<div>
+					 © 2019 Copyright
+					<a class="black-text right" href="/">Home</a>
 				</div>
 			</div>
 		</footer>
