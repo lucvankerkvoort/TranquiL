@@ -3,6 +3,7 @@
 var userInfo;
 
 $("#register-submit").on("click", function(event) {
+  console.log("clicked")
   event.preventDefault();
   $(".input-field").trigger("reset");
     userInfo = {
@@ -11,6 +12,7 @@ $("#register-submit").on("click", function(event) {
     password: $("#input-password").val()
 
     };
+    console.log(userInfo);
   blankUsername();
 };
 
