@@ -71,7 +71,9 @@ router.post("/api/registration", function(req, res) {
   );
 });
 
+
 router.post("/api/login", function(req, res) {});
+
 // var userInput = req.body;
 
 // User Login Authentication

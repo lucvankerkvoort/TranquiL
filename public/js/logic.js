@@ -1,33 +1,28 @@
-
 //When we click the register submit button, we will check for userId and password requirements//
 var userInfo;
 
 $("#register-submit").on("click", function(event) {
-  console.log("clicked")
+  console.log("clicked");
   event.preventDefault();
   $(".input-field").trigger("reset");
-    userInfo = {
-    name: $("#input-name").val(),
-    userId: $("#input-userId").val(),
+  userInfo = {
+    name: $("#input-username").val(),
+    userId: $("#input-userID").val(),
     password: $("#input-password").val()
-
-    };
-    console.log(userInfo);
+  };
+  console.log(userInfo);
   blankUsername();
 });
 
 function blankUsername() {
   if (userInfo.userId === "") {
     $("small").text("Please type a valid userId.");
-  }
-  else checkPasswordLength();
-
+  } else checkPasswordLength();
+}
 function checkPasswordLength() {
   if (userInfo.password.length < 8) {
     $("small").text("Your password needs to have between 8-20 characters");
-  }
-  else checkUserId();
-
+  } else checkUserId();
 }
 function checkUserId() {
   $.ajax("/api/registration", {
@@ -39,13 +34,11 @@ function checkUserId() {
     //it should check req.params or req.body?//
     //it should res.json(true) if userId is valid and doesn't exist in the db.
     //it should return res.json(false) if userId already exists.
-    if (data) { 
+    if (data) {
       $("small").text("UserId " + userInfo.userId + " successfully created.");
-    }
-    else $("small").text("The userId" + userInfo.userId + " already exists. Try a different one.")
-  })
+    } else $("small").text("The userId" + userInfo.userId + " already exists. Try a different one.");
+  });
 }
-
 
 // var profiles = require("./user-profiles");
 
@@ -81,7 +74,6 @@ function checkUserId() {
 //   var username = $("#inputID").val();
 //   var password = $("#input-password").val();
 //   var existingUsernameArray = [];
-
 
 //   if (username === "") {
 //     // if user's username input is blank
@@ -166,10 +158,10 @@ function scoreCalculator(userInput) {
     score += userInput.data[i];
   }
   console.log({ score });
-  assessment(userInput, score);
+  // assessment(userInput, score);
 }
 
-scoreCalculator(userInput);
+// scoreCalculator(userInput);
 
 function assessment(userInput, score) {
   console.log({ userInput });
@@ -205,7 +197,6 @@ function exercise(data) {
   console.log(data);
 }
 
-
 // function takenUsername() {
 //   // var wrongUsernameContainer = $("<small>");
 //   wrongUsernameContainer.addClass(
@@ -217,14 +208,14 @@ function exercise(data) {
 //   $(".username-input-form").append(wrongUsernameContainer);
 // }
 
-function checkPasswordLength() {
-  // var invalidPasswordContainer = $("<small>");
-  invalidPasswordContainer.addClass(
-    "form-text text-muted password-length-wrong"
-  );
-  invalidPasswordContainer.text("Your password is an invalid length!");
-  $("#passwordHelpBlock").append(invalidPasswordContainer);
-}
+// function checkPasswordLength() {
+//   // var invalidPasswordContainer = $("<small>");
+//   invalidPasswordContainer.addClass(
+//     "form-text text-muted password-length-wrong"
+//   );
+//   invalidPasswordContainer.text("Your password is an invalid length!");
+//   $("#passwordHelpBlock").append(invalidPasswordContainer);
+// }
 
 function wrongUsernamePassword() {
   $(".wrong-loginInfo-text").remove();
