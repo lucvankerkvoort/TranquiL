@@ -10,6 +10,9 @@ main {
     flex: 1 0 auto;
 }
 
+small {
+    color: red;
+}
 #mainBody {
     background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
     /* -webkit-background-size: cover;
@@ -30,12 +33,12 @@ main {
     background-color: rgba(152, 191, 234, 0);
 }
 
-.mainHeader {  
-    background-color:rgba(152,191,234,0);
+.mainHeader {
+    background-color: rgba(152, 191, 234, 0);
 }
 
-.surveyHeader {  
-    background-color:rgba(152,191,234,0);
+.surveyHeader {
+    background-color: rgba(152, 191, 234, 0);
 }
 
 .nav-link {
@@ -46,47 +49,46 @@ main {
     float: left;
 }
 
-.container  {
+.container {
     display: flex;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-  }
-  
+}
+
 .container .row {
     margin: 0 auto;
-  }
+}
 
 /* For Login form on main page */
 #loginCard {
     margin-top: 50px;
-    background-color: rgba(152,191,234,0.5);
+    background-color: rgba(152, 191, 234, 0.5);
     color: black;
     width: 400px;
 }
 
-
 /* login-registraion form label color */
 .input-field label {
-color: black;
+    color: black;
 }
 
 /* label focus color */
-.input-field input[type=text]:focus + label {
-color: #0277bd ;
+.input-field input[type="text"]:focus + label {
+    color: #0277bd;
 }
 
 /* label underline focus color */
-.input-field input[type=text]:focus {
-border-bottom: 1px solid #0277bd ;
-box-shadow: 0 1px 0 0 #0277bd ;
+.input-field input[type="text"]:focus {
+    border-bottom: 1px solid #0277bd;
+    box-shadow: 0 1px 0 0 #0277bd;
 }
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-color: #0277bd ;
+    color: #0277bd;
 }
 
 #mainTextBox {
@@ -100,8 +102,7 @@ color: #0277bd ;
     position: relative;
 }
 
-
-#registerModal{
+#registerModal {
     text-align: center;
 }
 
@@ -111,9 +112,7 @@ color: #0277bd ;
 }
 
 .carousel-item {
-
-    background-color: rgba(152,191,234,0.3);
-    
+    background-color: rgba(152, 191, 234, 0.3);
 }
 
 .survey-question {
@@ -125,6 +124,17 @@ color: #0277bd ;
     background-color: transparent;
     border: none;
 }
+
+
+[type="radio"]:checked + span:after {
+    border: 2px solid #0277bd;
+    background-color: #0277bd;
+}
+
+.indicators {
+    visibility: hidden;
+}
+
 
 
 #contentText {
@@ -143,10 +153,9 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: rgba(152, 191, 234, 0.6);
-    background-color: rgba(152,191,234,0.6);
+    background-color: rgba(152, 191, 234, 0.6);
     color: black;
-    height:40px;
-    
+    height: 40px;
 }
 
 #footer-content {
