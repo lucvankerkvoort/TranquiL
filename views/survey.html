@@ -23,18 +23,16 @@
 
 <body id="surveyBody">
 
-    <!-- Header Nav Section -->
     <header>
-        
-        <nav class="surveyHeader z-depth-0">
+        <!-- Header Nav Section    -->
+        <nav class="mainHeader z-depth-0">
             
             <div class="nav-wrapper">
 
-                <a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
+                <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="black-text" href="/survey".html">Home</a></li>
-                    <li><a class="black-text" href="/">Logout</a></li>
+                    <li><a class="black-text" href="/">Home</a></li>
                 </ul>
 
             </div>
@@ -56,13 +54,39 @@
 
                         <form action="#">
                             
-                            <div class="row ">
+                            <!-- <div class="row ">
                                 <button class="card emoji z-depth-0" id="" value="5">😀</button>
                                 <button class="card emoji z-depth-0" id="" value="10">😐</button>
                                 <button class="card emoji z-depth-0" id="" value="15">🙁</button>
                                 <button class="card emoji z-depth-0" id="" value="20">😡</button>
                                 <button class="card emoji z-depth-0" id="" value="25">🤯</button>  
-                            </div>
+                            </div> -->
+
+                            <div class="row ">
+                                    <ul class="" id="emoji-question">
+                                            <li>
+                                                <label class="emoji" for="happy">
+                                                    <input type="radio"  id="" value="5">😀</label>
+                                            </li>
+                                            <li>
+                                                <label class="emoji" for="neutral">
+                                                    <input type="radio"  id="" value="10">😐</label>
+                                            </li>
+                                            <li>
+                                                <label class="emoji" for="sad">
+                                                    <input type="radio"  id="" value="15">🙁</label>
+                                            </li>
+                                            <li>
+                                                <label class="emoji" for="angry">
+                                                    <input type="radio"  id="" value="20">😡</label>
+                                            </li>
+                                            <li>
+                                                <label class="emoji" for="nuclear">
+                                                    <input type="radio"  id="" value="25">🤯</label>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                </div>
 
                             <a class="btn waves-effect light-blue darken-1 next">Next</a>
 

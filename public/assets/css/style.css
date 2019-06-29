@@ -1,3 +1,4 @@
+/* ====== Global body styling ====== */
 body {
     font-family: futura-pt, sans-serif;
     color: black;
@@ -10,6 +11,7 @@ main {
     flex: 1 0 auto;
 }
 
+/* ====== Background Images ====== */
 #mainBody {
     background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
     /* -webkit-background-size: cover;
@@ -24,6 +26,14 @@ main {
     -moz-background-size: cover;
     -o-background-size: cover; */
     background-size: cover;
+}
+
+/* ====== Global Navbar styling ====== */
+
+.nav-wrapper {
+    padding: 5px;
+    margin-left: 5px;
+    margin-righ: 5px;
 }
 
 .navbar {
@@ -70,23 +80,23 @@ main {
 
 /* login-registraion form label color */
 .input-field label {
-color: black;
+    color: black;
 }
 
 /* label focus color */
 .input-field input[type=text]:focus + label {
-color: #0277bd ;
+    color: #0277bd ;
 }
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-border-bottom: 1px solid #0277bd ;
-box-shadow: 0 1px 0 0 #0277bd ;
+    border-bottom: 1px solid #0277bd ;
+    box-shadow: 0 1px 0 0 #0277bd ;
 }
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-color: #0277bd ;
+    color: #0277bd ;
 }
 
 #mainTextBox {
@@ -105,25 +115,37 @@ color: #0277bd ;
     text-align: center;
 }
 
+/* ====== CSS for Survey Carousel ====== */
 .carousel {
     margin-top: 40px;
     height: 500px;
 }
 
 .carousel-item {
-
-    background-color: rgba(152,191,234,0.3);
-    
+    background-color: rgba(152,191,234,0.3);  
 }
 
 .survey-question {
     margin-top: 100px;
 }
 
+ul#emoji-question li {
+    display: inline;
+}
+
+#emoji-question label{
+    padding:5px;
+    cursor:pointer;
+}
+
 .emoji {
     font-size: 100px;
     background-color: transparent;
-    border: none;
+    transition: transform .2s;   
+}
+
+.emoji:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 [type="radio"]:checked + span:after {
@@ -135,7 +157,6 @@ color: #0277bd ;
     visibility: hidden;
 }
 
-
 #contentText {
     float: right;
     /* margin-top: 30%%; */
@@ -146,6 +167,7 @@ color: #0277bd ;
     clear: right;
 }
 
+/* ====== Global footer styling ====== */
 footer {
     position: fixed;
     left: 0;
