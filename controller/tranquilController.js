@@ -53,7 +53,7 @@ router.post("/api/registration", function(req, res) {
 
   // User Registration Authentication
   // ----------------------------------------------------------------------
-  console.log("testing");
+
   // ----------------------------------------------------------------------
   // Here we connect to the database using the ORM and sending all the data to the table
   userInfo.create(
@@ -69,7 +69,7 @@ router.post("/api/registration", function(req, res) {
 });
 
 router.post("/api/login", function(req, res) {});
-var userInput = req.body;
+// var userInput = req.body;
 
 // User Login Authentication
 // ----------------------------------------------------------------------

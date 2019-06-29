@@ -14,7 +14,7 @@ $("#register-submit").on("click", function(event) {
     };
     console.log(userInfo);
   blankUsername();
-};
+});
 
 function blankUsername() {
   if (userInfo.userId === "") {
