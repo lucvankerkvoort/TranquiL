@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <div class="form-group">
+        <label for="videoId">VideoId</label>
+        <input
+          type=""
+          class="form-control"
+          id="videoId"
+          placeholder="put the id for the youtube video here"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Category">Category</label>
+        <select class="form-control" id="category">
+          <option>meditation</option>
+          <option>exercise</option>
+        </select>
+      </div>
+      <p>
+        Each video gets two score. The lowest (score1) and the hightest
+        (score2), depending on the type of stress (low, medium, high). which we
+        will check with the user score so to give the user a more specific
+        experience
+      </p>
+      <div class="form-group">
+        <label for="score1">score1</label>
+        <input
+          type="number"
+          class="form-control"
+          id="score1"
+          placeholder="put in the lowest number"
+        />
+      </div>
+      <div class="form-group">
+        <label for="score2">score2</label>
+        <input
+          type="number"
+          class="form-control"
+          id="score2"
+          placeholder="put in the highest number"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script type="text/javascript">
+      $("button[type=submit]").on("click", function() {
+        event.preventDefault();
+        var userInput = {
+          videoId: $("#videoId")
+            .val()
+            .trim(),
+          category: $("#categroy").val(),
+          score1: $("#score1").val(),
+          score2: $("#score2").val()
+        };
+
+        $.post("/api/data-output", userInput, function(data) {
+          console.log(data);
+        });
+      });
+    </script>
+  </body>
+</html>

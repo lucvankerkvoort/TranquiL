@@ -29,6 +29,9 @@ router.get("/result", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/results.html"));
 });
 
+router.get("/data-output", function(req, res) {
+  res.sendFile(path.join(__dirname, "../views/addvideo.html"));
+});
 // TEST ROUTES
 // router.get("/", function(req, res) {
 //   res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
@@ -69,7 +72,7 @@ router.post("/api/registration", function(req, res) {
 });
 
 router.post("/api/login", function(req, res) {});
-var userInput = req.body;
+// var userInput = req.body;
 
 // User Login Authentication
 // ----------------------------------------------------------------------
@@ -111,4 +114,18 @@ router.post("/api/survey", function(req, res) {
   scoreCalculator(userInput);
 });
 
+// This is a post route for adding videos to the database
+router.post("/api/data-output", function(req, res) {
+  var userInput = req.body;
+  console.log(userInput);
+
+  dataOutput.create(
+    ["video_url", "category", "score1", "score2"],
+    [userInput.videoId, userInput.category, userInput.score1, userInput.score2],
+    function(result) {
+      console.log(result);
+    }
+  );
+  res.send("It worked");
+});
 module.exports = router;
