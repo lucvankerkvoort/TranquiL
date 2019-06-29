@@ -1,13 +1,15 @@
 //When we click the register submit button, we will check for userId and password requirements//
 var userInfo;
+//=============Registration Code ==================
 
 $("#register-submit").on("click", function(event) {
   console.log("clicked");
   event.preventDefault();
   $(".input-field").trigger("reset");
   userInfo = {
-    name: $("#input-username").val(),
-    userId: $("#input-userID").val(),
+
+    name: $("#input-name").val(),
+    userId: $("#input-userId").val(),
     password: $("#input-password").val()
   };
   console.log(userInfo);
@@ -19,16 +21,19 @@ function blankUsername() {
     $("small").text("Please type a valid userId.");
   } else checkPasswordLength();
 }
+
 function checkPasswordLength() {
   if (userInfo.password.length < 8) {
     $("small").text("Your password needs to have between 8-20 characters");
   } else checkUserId();
 }
 function checkUserId() {
+
   $.ajax("/api/registration", {
     type: "POST",
     data: userInfo
   }).then(function(data) {
+
     console.log("checking against existing usernames");
     //here we need the router.post in the controller to check if the userId exists in the db.
     //it should check req.params or req.body?//
@@ -124,33 +129,52 @@ function checkUserId() {
 //   var username = $("#login-username").val();
 //   var password = $("#login-password").val();
 
-//   // MySQL query to loop through username and password in database
-//   // if statement checking for matching username and password in database
-//   // logic to give the current user their survey reponse from database
+    console.log("ajax post initiated");
+    if (data) {
+      $("small").text("UserId " + userInfo.userId + " successfully created.");
+    } else $("small").text("we need to add an error message here when the controller says things didn't work");
+  });
+});
 
-//   // else if to display error message that username and password do not match any of those in the database
-//   wrongUsernamePassword();
 
-//   // clear input field
-//   $("#login-username").val("");
-//   $("#login-password").val("");
-// });
-// // 1. Capture's user's inputs from login flow and compares it to existing user IDs usernames and passwords in the database
-// //      - If username and password do not match, error message displayed below input bars stating to retype info
-// // 2. If username and password match, user is logged in and results from previous form input is displayed
-// //
+// function blankUserName() {
+//   if (userInfo.name === "") {
+//     $("small").text("Please enter your name");
+//   } else blankUserId();
+// }
 
-// /* PSEUDOCODED SEARCH BAR FUNCTIONALITY (GREG) (NICE-TO-HAVE)//////////////
-// // 1. Search Bar would exist at top of the page
-// // 2. Users can filter through categories in the search bar
-// //         - Categories: Yoga, Meditation, Exercise
-// // 3. Conditions for the filter
-// //         - Filter would take inputs as strings
-// //         - Filter would check for matching sequences between the user's inputs and the values in that category in the database
-// //         - Filtered search would render below the search bar in a box that contains the options
-// //         - Options would be dynamic and would maybe be able to be clicked so that they would get appended in the right section
-// //         - Filter would contain a reset button as well
-// */
+// function blankUserId() {
+//   if (userInfo.userId === "") {
+//     $("small").text("Please type a valid userId.");
+//   } else checkPasswordLength();
+// }
+// function checkPasswordLength() {
+//   if (userInfo.password.length < 8) {
+//     $("small").text("Your password needs to have between 8-20 characters");
+//   } else checkUserId();
+// }
+
+//=============Login Code ==================
+
+$("#login-submit").on("click", function(event) {
+  console.log("clicked login");
+  event.preventDefault();
+  $(".input-field").trigger("reset");
+  var loginInput = {
+    userId: $("#userId").val(),
+    password: $("#password").val()
+  };
+  $.ajax("/api/login", {
+    type: "GET",
+    data: loginInput
+  }).then(function(data) {
+    console.log("sending login info for validation");
+    //if the controller verifies the login information as correct we will reload to /survey"
+    if (data) {
+      window.location.href = "/survey";
+    } else $("small").text("userId does not match password. Please try again");
+  });
+});
 
 function scoreCalculator(userInput) {
   var score = 0;
@@ -197,6 +221,7 @@ function exercise(data) {
   console.log(data);
 }
 
+
 // function takenUsername() {
 //   // var wrongUsernameContainer = $("<small>");
 //   wrongUsernameContainer.addClass(
@@ -208,14 +233,14 @@ function exercise(data) {
 //   $(".username-input-form").append(wrongUsernameContainer);
 // }
 
-// function checkPasswordLength() {
-//   // var invalidPasswordContainer = $("<small>");
-//   invalidPasswordContainer.addClass(
-//     "form-text text-muted password-length-wrong"
-//   );
-//   invalidPasswordContainer.text("Your password is an invalid length!");
-//   $("#passwordHelpBlock").append(invalidPasswordContainer);
-// }
+function checkPasswordLength() {
+  // var invalidPasswordContainer = $("<small>");
+  invalidPasswordContainer.addClass(
+    "form-text text-muted password-length-wrong"
+  );
+  invalidPasswordContainer.text("Your password is an invalid length!");
+  $("#passwordHelpBlock").append(invalidPasswordContainer);
+}
 
 function wrongUsernamePassword() {
   $(".wrong-loginInfo-text").remove();
@@ -226,3 +251,4 @@ function wrongUsernamePassword() {
   );
   $(".user-login-password-container").append(loginErrorContainer);
 }
+

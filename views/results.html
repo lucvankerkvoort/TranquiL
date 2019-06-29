@@ -15,7 +15,6 @@
 		<link rel="stylesheet" href="assets/css/results.css" type="text/css" />
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
-
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -26,7 +25,6 @@
 	</head>
 
 	<body id="results-page">
-
 
 		<header>
 			<!-- Header Nav Section    -->
@@ -45,8 +43,6 @@
 			</nav>
 	
 		</header>
-	
-
 
 		<!--div for stress meter, boiler plate -->
 		<div class="container">
@@ -91,6 +87,17 @@
 		</div>
 
 		<script type="text/javascript">
+			// get the user id from the url of the browser from below
+			// var browserURL = window.location.href;
+			// make get request to get user information
+			// then display users score
+
+			var theId;
+
+			$.get("/users/" + theId).then(function(data) {
+				var score = data.score;
+			});
+
 			var gaugeOptions = {
 				chart: {
 					type: "solidgauge"
@@ -240,22 +247,16 @@
 
 		<!--JavaScript at end of body for optimized loading-->
 
-		<script
-			type="text/javascript"
-			src="js/materialize.js"
-		></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
 
 		<!-- Site Footer -->
 		<footer style="position:fixed;bottom:0;left:0;width:100%;">
-			
 			<div class="footer-copyright">
-
 				<div id="footer-content">
 					© 2019 Copyright
 					<a class="black-text right" href="/">Home</a>
 				</div>
 			</div>
 		</footer>
-	
 	</body>
 </html>
