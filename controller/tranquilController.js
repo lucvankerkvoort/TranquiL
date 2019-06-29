@@ -25,7 +25,7 @@ router.get("/survey", function(req, res) {
 });
 
 // We set the route to our results page
-router.get("/result", function(req, res) {
+router.get("/result/:id", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/results.html"));
 });
 
@@ -71,7 +71,6 @@ router.post("/api/registration", function(req, res) {
   );
 });
 
-
 router.post("/api/login", function(req, res) {});
 
 // var userInput = req.body;
@@ -104,7 +103,7 @@ router.post("/api/survey", function(req, res) {
       userInfo.update({ score: score }, ["id =" + id], function(result) {
         console.log({ result });
         if (result.affectedRows > 0) {
-          res.json(result);
+          res.json({ result: result, userId: id });
         } else {
           res.status(500).end();
         }
