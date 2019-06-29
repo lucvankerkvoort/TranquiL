@@ -12,7 +12,7 @@ var router = express.Router();
 var id = [];
 // HTML ROUTES
 // ----------------------------------------------------------------------
-
+// Yipiekayeey MF
 // WORKING ROUTES
 // We set the route for our home page
 router.get("/", function(req, res) {
@@ -51,6 +51,10 @@ router.post("/api/registration", function(req, res) {
   var userProfile = req.body;
   console.log(userProfile);
 
+  // User Registration Authentication
+  // ----------------------------------------------------------------------
+
+  // ----------------------------------------------------------------------
   // Here we connect to the database using the ORM and sending all the data to the table
   userInfo.create(
     ["username", "password", "name"],
@@ -65,6 +69,12 @@ router.post("/api/registration", function(req, res) {
 });
 
 router.post("/api/login", function(req, res) {});
+var userInput = req.body;
+
+// User Login Authentication
+// ----------------------------------------------------------------------
+
+// ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
   // we capture the user input from the html file
