@@ -56,7 +56,7 @@ router.post("/api/registration", function(req, res) {
 
   // User Registration Authentication
   // ----------------------------------------------------------------------
-  console.log("testing");
+
   // ----------------------------------------------------------------------
   // Here we connect to the database using the ORM and sending all the data to the table
   userInfo.create(
