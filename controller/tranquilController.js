@@ -45,27 +45,40 @@ router.get("/result", function(req, res) {
 // });
 // API ROUTES
 // ----------------------------------------------------------------------
-
 // This is the post request for the registration
 router.post("/api/registration", function(req, res) {
   var userProfile = req.body;
+  var userInformation = userInfo.all(function(res) {
+    console.log(res);
+  });
+  var existingUsernamesArray = [];
   console.log(userProfile);
 
   // User Registration Authentication
   // ----------------------------------------------------------------------
 
-  // ----------------------------------------------------------------------
-  // Here we connect to the database using the ORM and sending all the data to the table
-  userInfo.create(
-    ["username", "password", "name"],
-    [userProfile.userId, userProfile.password, userProfile.name],
-    function(result) {
-      // We get back the ID of the user so we can match the score from the survey with the username password
-      id = result.insertId;
-      console.log({ id });
-      res.json(id);
-    }
-  );
+  for (var i = 0; i < userInformation.length; i++) {
+    existingUsernamesArray.push(userInformation[i].username);
+  }
+
+  if (
+    existingUsernamesArray.includes(userInfo.userId) === false &&
+    (userInfo.password.length >= 8 && userInfo.password.length <= 20)
+  ) {
+    // ----------------------------------------------------------------------
+    // Here we connect to the database using the ORM and sending all the data to the table
+    userInfo.create(
+      ["username", "password", "name"],
+      [userProfile.userId, userProfile.password, userProfile.name],
+      function(result) {
+        // We get back the ID of the user so we can match the score from the survey with the username password
+        id = result.insertId;
+        console.log({ id });
+        res.json(id);
+      }
+    );
+    // The route goes to the survey since username and password pass the criteria
+  }
 });
 
 router.post("/api/login", function(req, res) {});
