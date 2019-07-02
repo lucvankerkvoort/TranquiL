@@ -1,3 +1,4 @@
+/* ====== Global body styling ====== */
 body {
   font-family: futura-pt, sans-serif;
   color: black;
@@ -13,6 +14,9 @@ main {
 small {
   color: red;
 }
+
+/* ====== Background Images ====== */
+
 #mainBody {
   background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
   /* -webkit-background-size: cover;
@@ -27,6 +31,14 @@ small {
     -moz-background-size: cover;
     -o-background-size: cover; */
   background-size: cover;
+}
+
+/* ====== Global Navbar styling ====== */
+
+.nav-wrapper {
+  padding: 5px;
+  margin-left: 5px;
+  margin-righ: 5px;
 }
 
 .navbar {
@@ -76,8 +88,15 @@ small {
 }
 
 /* label focus color */
+
 .input-field input[type="text"]:focus + label {
   color: #0277bd;
+}
+
+/* label underline focus color */
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #0277bd;
+  box-shadow: 0 1px 0 0 #0277bd;
 }
 
 /* label underline focus color */
@@ -106,6 +125,7 @@ small {
   text-align: center;
 }
 
+/* ====== CSS for Survey Carousel ====== */
 .carousel {
   margin-top: 40px;
   height: 500px;
@@ -123,6 +143,23 @@ small {
   font-size: 100px;
   background-color: transparent;
   border: none;
+}
+
+#emoji-question label {
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* .emoji {
+    font-size: 100px;
+    background-color: transparent;
+    transition: transform .2s;   
+} */
+
+.emoji:hover {
+  transform: scale(
+    1.5
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 [type="radio"]:checked + span:after {
@@ -144,6 +181,7 @@ small {
   clear: right;
 }
 
+/* ====== Global footer styling ====== */
 footer {
   position: fixed;
   left: 0;
