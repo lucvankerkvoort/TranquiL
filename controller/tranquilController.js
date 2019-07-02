@@ -46,6 +46,7 @@ router.get("/result", function(req, res) {
   score;
   userInfo.all(function(result) {
     score = result.pop().score;
+    console.log(score);
   });
   dataOutput.all(function(result) {
     console.log(result);
@@ -94,50 +95,55 @@ router.post("/api/registration", function(req, res) {
     existingUsernamesArray.includes(userInfo.userId) === true &&
     (userInfo.password.length >= 8 && userInfo.password.length <= 20)
   ) {
-    $(".password-length-wrong").remove();
-    $(".existing-username-text").remove();
-    let wrongUsernameContainer = $("<small>");
-    wrongUsernameContainer.addClass(
-      "form-text text-muted existing-username-text"
-    );
-    wrongUsernameContainer.text(
-      "This username is already taken. Please enter another username."
-    );
-    $(".userId-div").append(wrongUsernameContainer);
+    res.send(["THIS USERNAME IS ALREADY TAKEN. PLEASE ENTER ANOTHER USERNAME"]);
+    // $(".password-length-wrong").remove();
+    // $(".existing-username-text").remove();
+    // let wrongUsernameContainer = $("<small>");
+    // wrongUsernameContainer.addClass(
+    //   "form-text text-muted existing-username-text"
+    // );
+    // wrongUsernameContainer.text(
+    //   "This username is already taken. Please enter another username."
+    // );
+    // $(".userId-div").append(wrongUsernameContainer);
   } else if (
     existingUsernameArray.includes(userInfo.userId) === false &&
     (userInfo.password.length < 8 || userInfo.password.length > 20)
   ) {
-    // if there is already an existing username
-    $(".existing-username-text").remove();
-    $(".password-length-wrong").remove();
-    let invalidPasswordContainer = $("<small>");
-    invalidPasswordContainer.addClass(
-      "form-text text-muted password-length-wrong"
-    );
-    invalidPasswordContainer.text("Your password is an invalid length!");
-    $("password-signup-div").append(invalidPasswordContainer);
+    res.send(["Your password is an invalid length!"]);
+    // $(".existing-username-text").remove();
+    // $(".password-length-wrong").remove();
+    // let invalidPasswordContainer = $("<small>");
+    // invalidPasswordContainer.addClass(
+    //   "form-text text-muted password-length-wrong"
+    // );
+    // invalidPasswordContainer.text("Your password is an invalid length!");
+    // $("password-signup-div").append(invalidPasswordContainer);
   } else if (
     existingUsernamesArray.includes(userInfo.userId) === true &&
     (userInfo.password.length < 8 || userInfo.password.length > 20)
   ) {
+    res.send([
+      "This username is already taken. Please go bo back to the login screen or use a different username.",
+      "Your password is an invalid length!"
+    ]);
     // if there is already an existing username
-    $(".existing-username-text").remove();
-    $(".password-length-wrong").remove();
-    let wrongUsernameContainer = $("<small>");
-    wrongUsernameContainer.addClass(
-      "form-text text-muted existing-username-text"
-    );
-    wrongUsernameContainer.text(
-      "This username is already taken. Please go bo back to the login screen or use a different username."
-    );
-    $(".userId-div").append(wrongUsernameContainer);
-    var invalidPasswordContainer = $("<small>");
-    invalidPasswordContainer.addClass(
-      "form-text text-muted password-length-wrong"
-    );
-    invalidPasswordContainer.text("Your password is an invalid length!");
-    $(".password-signup-div").append(invalidPasswordContainer);
+    // $(".existing-username-text").remove();
+    // $(".password-length-wrong").remove();
+    // let wrongUsernameContainer = $("<small>");
+    // wrongUsernameContainer.addClass(
+    //   "form-text text-muted existing-username-text"
+    // );
+    // wrongUsernameContainer.text(
+    //   "This username is already taken. Please go bo back to the login screen or use a different username."
+    // );
+    // $(".userId-div").append(wrongUsernameContainer);
+    // var invalidPasswordContainer = $("<small>");
+    // invalidPasswordContainer.addClass(
+    //   "form-text text-muted password-length-wrong"
+    // );
+    // invalidPasswordContainer.text("Your password is an invalid length!");
+    // $(".password-signup-div").append(invalidPasswordContainer);
   }
 });
 
