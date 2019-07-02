@@ -160,3 +160,15 @@ footer {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.existing-username-text {
+  color: red !important;
+}
+
+.password-length-wrong {
+  color: red !important;
+}
+
+.wrong-login-info-text {
+  color: red !important;
+}
