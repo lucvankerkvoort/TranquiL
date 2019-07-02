@@ -1,7 +1,6 @@
 // We require both the models
 var userInfo = require("../models/user_info");
 var dataOutput = require("../models/data_output");
-
 var path = require("path");
 // We require the express module
 var express = require("express");
@@ -25,9 +24,9 @@ router.get("/survey", function(req, res) {
 });
 
 // We set the route to our results page
-router.get("/result", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/results.html"));
-});
+// router.get("/result", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../views/results.html"));
+// });
 
 router.get("/data-output", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/addvideo.html"));
@@ -42,10 +41,17 @@ router.get("/data-output", function(req, res) {
 //   res.sendFile(path.join(__dirname, "../views/test_survey.html"));
 // });
 
-// // We set the route to our results page
-// router.get("/result", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/results.html"));
-// });
+// We set the route to our results page
+router.get("/result", function(req, res) {
+  score;
+  userInfo.all(function(result) {
+    score = result.pop().score;
+  });
+  dataOutput.all(function(result) {
+    console.log(result);
+  });
+  res.render("result");
+});
 // API ROUTES
 // ----------------------------------------------------------------------
 
@@ -128,4 +134,5 @@ router.post("/api/data-output", function(req, res) {
   );
   res.send("It worked");
 });
+
 module.exports = router;
