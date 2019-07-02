@@ -319,11 +319,11 @@ router.post("/api/survey", function(req, res) {
   // so we can link the score to the same row
   function postToDatabase(score) {
     userInfo.all(function(data) {
-      id = data.pop().id;
-      userInfo.update({ score: score }, ["id =" + id], function(result) {
+      let userId = data.pop().id;
+      userInfo.update({ score: score }, ["id =" + userId], function(result) {
         console.log({ result });
         if (result.affectedRows > 0) {
-          res.json({ result: result, userId: id });
+          res.json({ result: result, userId: userId });
         } else {
           res.status(500).end();
         }
@@ -350,4 +350,3 @@ router.post("/api/data-output", function(req, res) {
   res.send("It worked");
 });
 module.exports = router;
-
