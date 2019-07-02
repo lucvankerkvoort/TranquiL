@@ -4,8 +4,8 @@ var orm = require("../config/orm");
 // We create a new object called dataOutput which we will use to read, create, update and select a single column from the database
 var dataOutput = {
   // We read files from the database
-  read: function(cb) {
-    orm.read("data_output", function(res) {
+  all: function(cb) {
+    orm.all("data_output", function(res) {
       cb(res);
       console.log(res);
     });
