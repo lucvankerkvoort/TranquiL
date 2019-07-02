@@ -1,36 +1,36 @@
 /* ====== Global body styling ====== */
 body {
-    font-family: futura-pt, sans-serif;
-    color: black;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  font-family: futura-pt, sans-serif;
+  color: black;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 small {
-    color: red;
+  color: red;
 }
 
 /* ====== Background Images ====== */
 
 #mainBody {
-    background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
-    /* -webkit-background-size: cover;
+  background: url(../images/IMG_9046.jpg) no-repeat center center fixed;
+  /* -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover; */
-    background-size: cover;
+  background-size: cover;
 }
 
 #surveyBody {
-    background: url(../images/IMG_9047-2.jpg) no-repeat center center fixed;
-    /* -webkit-background-size: cover;
+  background: url(../images/IMG_9047-2.jpg) no-repeat center center fixed;
+  /* -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover; */
-    background-size: cover;
+  background-size: cover;
 }
 
 /* ====== Global Navbar styling ====== */
@@ -42,52 +42,62 @@ small {
 }
 
 .navbar {
-    background-color: rgba(152, 191, 234, 0);
+  background-color: rgba(152, 191, 234, 0);
 }
 
 .mainHeader {
-    background-color: rgba(152, 191, 234, 0);
+  background-color: rgba(152, 191, 234, 0);
 }
 
 .surveyHeader {
-    background-color: rgba(152, 191, 234, 0);
+  background-color: rgba(152, 191, 234, 0);
 }
 
 .nav-link {
-    color: black;
+  color: black;
 }
 
 #logoNav {
-    float: left;
+  float: left;
 }
 
 .container {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .container .row {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 /* For Login form on main page */
 #loginCard {
-    margin-top: 50px;
-    background-color: rgba(152, 191, 234, 0.5);
-    color: black;
-    width: 400px;
+  margin-top: 50px;
+  background-color: rgba(152, 191, 234, 0.5);
+  color: black;
+  width: 400px;
 }
 
 /* login-registraion form label color */
 .input-field label {
-    color: black;
+  color: black;
 }
 
 /* label focus color */
+
+.input-field input[type="text"]:focus + label {
+  color: #0277bd;
+}
+
+/* label underline focus color */
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #0277bd;
+  box-shadow: 0 1px 0 0 #0277bd;
+
 .input-field input[type=text]:focus + label {
     color: #0277bd ;
 }
@@ -96,43 +106,47 @@ small {
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #0277bd ;
     box-shadow: 0 1px 0 0 #0277bd ;
-
 }
 
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: #0277bd;
-
+  color: #0277bd;
 }
 
 #mainTextBox {
-    margin-top: 100px;
-    margin-left: 20%;
-    padding: 10px;
-    height: 250px;
-    width: 55%;
-    background-color: rgba(152, 191, 234, 0.5);
-    opacity: 0.8;
-    position: relative;
+  margin-top: 100px;
+  margin-left: 20%;
+  padding: 10px;
+  height: 250px;
+  width: 55%;
+  background-color: rgba(152, 191, 234, 0.5);
+  opacity: 0.8;
+  position: relative;
 }
 
 #registerModal {
-    text-align: center;
+  text-align: center;
 }
 
 /* ====== CSS for Survey Carousel ====== */
 .carousel {
-    margin-top: 40px;
-    height: 500px;
+  margin-top: 40px;
+  height: 500px;
 }
 
 .carousel-item {
-    background-color: rgba(152, 191, 234, 0.3);
+  background-color: rgba(152, 191, 234, 0.3);
 }
 
 .survey-question {
-    margin-top: 100px;
+  margin-top: 100px;
 }
+
+
+.emoji {
+  font-size: 100px;
+  background-color: transparent;
+  border: none;
 
 #emoji-question {
     display: inline;
@@ -151,42 +165,42 @@ small {
 
 .emoji:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
 }
 
-
 [type="radio"]:checked + span:after {
-    border: 2px solid #0277bd;
-    background-color: #0277bd;
+  border: 2px solid #0277bd;
+  background-color: #0277bd;
 }
 
 .indicators {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #contentText {
-    float: right;
-    /* margin-top: 30%%; */
-    font-size: 35px;
-    position: absolute;
-    bottom: 0;
-    right: 15px;
-    clear: right;
+  float: right;
+  /* margin-top: 30%%; */
+  font-size: 35px;
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  clear: right;
 }
 
 /* ====== Global footer styling ====== */
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(152, 191, 234, 0.6);
-    background-color: rgba(152, 191, 234, 0.6);
-    color: black;
-    height: 40px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(152, 191, 234, 0.6);
+  background-color: rgba(152, 191, 234, 0.6);
+  color: black;
+  height: 40px;
 }
 
 #footer-content {
-    padding: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

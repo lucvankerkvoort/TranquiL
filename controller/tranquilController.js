@@ -141,46 +141,44 @@ router.post("/api/registration", function(req, res) {
   }
 });
 
-router.post("/api/login", function(req, res) {});
+router.post("/api/login", function(req, res) {
+  // User Login Authentication
+  // ----------------------------------------------------------------------
+  var userProfile = req.body;
+  var userInformation = userInfo.all(function(res) {
+    console.log(res);
+  });
+  var existingUsernamesArray = [];
+  var existingPasswordsArray = [];
+  let count = 0;
 
-// User Login Authentication
-// ----------------------------------------------------------------------
-var userProfile = req.body;
-var userInformation = userInfo.all(function(res) {
-  console.log(res);
-});
-var existingUsernamesArray = [];
-var existingPasswordsArray = [];
-let count = 0;
-$("#userId").val("");
-$("#password").val("");
-
-for (var i = 0; i < userInformation.length; i++) {
-  existingUsernamesArray.push(userInformation[i].username);
-  existingPasswordsArray.push(userInformation[i].password);
-}
-
-for (var i = 0; i < existingUsernamesArray.length; i++) {
-  if (
-    userInfo.userId === existingUsernamesArray[i] &&
-    userInfo.password === existingPasswordsArray[i]
-  ) {
-    console.log("PLEASE PUT CODE HERE");
-    // LOGIC TO LOG THE USER IN AND ROUTE TO the RESULT PAGE
-  } else {
-    count++;
+  for (var i = 0; i < userInformation.length; i++) {
+    existingUsernamesArray.push(userInformation[i].username);
+    existingPasswordsArray.push(userInformation[i].password);
   }
-}
 
-if (count === existingUsernamesArray.length) {
-  $(".wrong-loginInfo-text").remove();
-  var loginErrorContainer = $("<small>");
-  loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
-  loginErrorContainer.text(
-    "Your username and/or password information are incorrect. Please try again."
-  );
-  $(".password-div").append(loginErrorContainer);
-}
+  for (var i = 0; i < existingUsernamesArray.length; i++) {
+    if (
+      userInfo.userId === existingUsernamesArray[i] &&
+      userInfo.password === existingPasswordsArray[i]
+    ) {
+      console.log("PLEASE PUT CODE HERE");
+      // LOGIC TO LOG THE USER IN AND ROUTE TO the RESULT PAGE
+    } else {
+      count++;
+    }
+  }
+
+  if (count === existingUsernamesArray.length) {
+    $(".wrong-loginInfo-text").remove();
+    var loginErrorContainer = $("<small>");
+    loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
+    loginErrorContainer.text(
+      "Your username and/or password information are incorrect. Please try again."
+    );
+    $(".password-div").append(loginErrorContainer);
+  }
+});
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
