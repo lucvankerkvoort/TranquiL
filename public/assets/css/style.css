@@ -36,9 +36,9 @@ small {
 /* ====== Global Navbar styling ====== */
 
 .nav-wrapper {
-    padding: 5px;
-    margin-left: 5px;
-    margin-righ: 5px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-righ: 5px;
 }
 
 .navbar {
@@ -97,15 +97,12 @@ small {
 .input-field input[type="text"]:focus {
   border-bottom: 1px solid #0277bd;
   box-shadow: 0 1px 0 0 #0277bd;
-
-.input-field input[type=text]:focus + label {
-    color: #0277bd ;
 }
 
 /* label underline focus color */
-.input-field input[type=text]:focus {
-    border-bottom: 1px solid #0277bd ;
-    box-shadow: 0 1px 0 0 #0277bd ;
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #0277bd;
+  box-shadow: 0 1px 0 0 #0277bd;
 }
 
 /* icon prefix focus color */
@@ -142,19 +139,15 @@ small {
   margin-top: 100px;
 }
 
-
 .emoji {
   font-size: 100px;
   background-color: transparent;
   border: none;
-
-#emoji-question {
-    display: inline;
 }
 
-#emoji-question label{
-    padding:5px;
-    cursor:pointer;
+#emoji-question label {
+  padding: 5px;
+  cursor: pointer;
 }
 
 /* .emoji {
@@ -164,8 +157,9 @@ small {
 } */
 
 .emoji:hover {
-    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-
+  transform: scale(
+    1.5
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 [type="radio"]:checked + span:after {
@@ -203,4 +197,16 @@ footer {
   padding: 10px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.existing-username-text {
+  color: red !important;
+}
+
+.password-length-wrong {
+  color: red !important;
+}
+
+.wrong-login-info-text {
+  color: red !important;
 }
