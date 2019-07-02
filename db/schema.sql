@@ -1,4 +1,5 @@
--- DROP DATABASE IF EXISTS tranquil_db;
+DROP DATABASE IF EXISTS tranquil_db;
+
 
 CREATE DATABASE tranquil_db;
 
@@ -20,18 +21,21 @@ CREATE TABLE user_info
     (id)
 );
 
-    CREATE TABLE data_output
-    (
-        id INT
-        AUTO_INCREMENT NOT NULL,
-    video_url VARCHAR
-        (45),
+CREATE TABLE data_output
+(
+    id INT
+    AUTO_INCREMENT NOT NULL,
     category VARCHAR
-        (45),
-    score1 INT
-        (10),
-    score2 INT
-        (10),
+    (45),
+    min INT (10),
+    max INT (10),
+    meditation VARCHAR
+    (45),
+    exercise VARCHAR
+    (45),
+    description VARCHAR
+    (300),
+
     PRIMARY KEY
         (id)
 );
