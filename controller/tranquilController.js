@@ -126,7 +126,7 @@ router.post("/api/survey", function(req, res) {
 });
 
 module.exports = router;
-=======
+// =======
 // We require both the models
 var userInfo = require("../models/user_info");
 var dataOutput = require("../models/data_output");
@@ -154,7 +154,7 @@ router.get("/survey", function(req, res) {
 });
 
 // We set the route to our results page
-router.get("/result/:id", function(req, res) {
+router.get("/result", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/results.html"));
 });
 

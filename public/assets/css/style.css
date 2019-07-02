@@ -134,7 +134,7 @@ small {
     margin-top: 100px;
 }
 
-ul#emoji-question li {
+#emoji-question {
     display: inline;
 }
 
@@ -143,11 +143,11 @@ ul#emoji-question li {
     cursor:pointer;
 }
 
-.emoji {
+/* .emoji {
     font-size: 100px;
     background-color: transparent;
     transition: transform .2s;   
-}
+} */
 
 .emoji:hover {
     transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
