@@ -23,18 +23,16 @@
 
 <body id="surveyBody">
 
-    <!-- Header Nav Section -->
     <header>
-        
-        <nav class="surveyHeader z-depth-0">
+        <!-- Header Nav Section    -->
+        <nav class="mainHeader z-depth-0">
             
             <div class="nav-wrapper">
 
-                <a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
+                <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a class="black-text" href="/survey".html">Home</a></li>
-                    <li><a class="black-text" href="/">Logout</a></li>
+                    <li><a class="black-text" href="/">Home</a></li>
                 </ul>
 
             </div>
@@ -51,55 +49,105 @@
                 <div class="carousel-item white-text" href="#one!">
 
                     <div class="survey-question">
+
                         <h3 class="white-text">What is your current mood?</h3>
 
+                        <!-- <div class="row ">
+                            <button class="card emoji z-depth-0" name="group1"  id="" value="5">😀</button>
+                            <button class="card emoji z-depth-0" name="group1"  id="" value="10">😐</button>
+                            <button class="card emoji z-depth-0" name="group1"  id="" value="15">🙁</button>
+                            <button class="card emoji z-depth-0" name="group1"  id="" value="20">😡</button>
+                            <button class="card emoji z-depth-0" name="group1"  id="" value="25">🤯</button>  
+                        </div> -->
+
                         <div class="row ">
-                            <button class="card emoji z-depth-0" id="" value="">😀</button>
-                            <button class="card emoji z-depth-0" id="" value="">😐</button>
-                            <button class="card emoji z-depth-0" id="" value="">🙁</button>
-                            <button class="card emoji z-depth-0" id="" value="">😡</button>
-                            <button class="card emoji z-depth-0" id="" value="">🤯</button>  
+                                
+                            <form class="Survey-form" action="#">
+
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio"  id="" value="5">
+                                        <span>😀</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio"  id="" value="10">
+                                        <span>😐</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>                                                   
+                                        <input name="group1" type="radio"  id="" value="15">
+                                        <span>🙁</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio"  id="" value="20">
+                                        <span>😡</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input name="group1" type="radio"  id="" value="25">
+                                        <span>🤯</span>
+                                    </label>
+                                </p>
+
+                                <a class="btn waves-effect light-blue darken-1 next">Next</a>
+
+                            </form>
+
                         </div>
+
                     </div>
 
                 </div>
                 <div class="carousel-item  white-text" href="#two!">
 
                     <div class="survey-question">
-                        <h3 class="white-text">How much control do you have for the important things in your life?</h3>
 
-                                <form action="#">
-                                        <p>
-                                          <label>
-                                            <input name="group1" type="radio" checked />
-                                            <span>No Control</span>
-                                          </label>
-                                        </p>
-                                        <p>
-                                          <label>
-                                            <input name="group1" type="radio" />
-                                            <span>A Little Control</span>
-                                          </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input class="group1" name="group1" type="radio"  />
-                                                <span>Neutral</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <label>
-                                                <input class="group1" name="group1" type="radio"  />
-                                                <span>Some Control</span>
-                                            </label>
-                                        </p>
-                                        <p>
-                                                <label>
-                                                    <input class="group1" name="group1" type="radio"  />
-                                                    <span>Full Control</span>
-                                                </label>
-                                            </p>
-                                      </form> 
+                        <h3 class="white-text">How much control do you have for the important things in your life?</h3>
+                        
+                        <div class="row ">
+                            
+                            <form class="Survey-form" action="#">
+                                <p>
+                                    <label>
+                                    <input name="group1" type="radio" id="" value="5"/>
+                                    <span>No Control</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                    <input name="group1" type="radio" id="" value="10">
+                                    <span>A Little Control</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="15"/>
+                                        <span>Neutral</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="20"/>
+                                        <span>Some Control</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="25"/>
+                                        <span>Full Control</span>
+                                    </label>
+                                </p>
+
+                                <a class="btn waves-effect light-blue darken-1 next">Next</a>
+
+                            </form> 
+                        </div>
                     </div>
 
                 </div>
@@ -111,38 +159,41 @@
 
                         <div class="row ">
         
-                            <form action="#">
+                            <form class="Survey-form" action="#">
                                     <p>
                                       <label>
-                                        <input name="group1" type="radio" checked />
+                                        <input name="group1" type="radio" id="" value="5"/>
                                         <span>Well Rested</span>
                                       </label>
                                     </p>
                                     <p>
                                       <label>
-                                        <input name="group1" type="radio" />
+                                        <input name="group1" type="radio" id="" value="10">
                                         <span>Slightly Rested</span>
                                       </label>
                                     </p>
                                     <p>
                                         <label>
-                                            <input class="group1" name="group1" type="radio"  />
+                                            <input  name="group1" type="radio" id="" value="15"/>
                                             <span>Neutral</span>
                                         </label>
                                     </p>
                                     <p>
                                         <label>
-                                            <input class="group1" name="group1" type="radio"  />
+                                            <input  name="group1" type="radio" id="" value="20"/>
                                             <span>Tired</span>
                                         </label>
                                     </p>
                                     <p>
-                                            <label>
-                                                <input class="group1" name="group1" type="radio"  />
-                                                <span>Exhausted</span>
-                                            </label>
-                                        </p>
-                                  </form>  
+                                        <label>
+                                            <input  name="group1" type="radio" id="" value="25"/>
+                                            <span>Exhausted</span>
+                                        </label>
+                                    </p>
+
+                                    <a class="btn waves-effect light-blue darken-1 next">Next</a>
+
+                            </form>  
                         </div>
                     </div>
 
@@ -150,37 +201,100 @@
 
                 <div class="carousel-item white-text" href="#four!">
 
-                    <div class="survey-question">
-                        <p class="white-text">Question Four:</p>
+                        <div class="survey-question">
+                            <h3 class="white-text">how often are you upset because of something that happened unexpectedly?</h3>
+    
+                            <div class="row ">
+                                  
+                                <form class="Survey-form" action="#">
+                                        <p>
+                                          <label>
+                                            <input name="group1" type="radio" id="" value="5" />
+                                            <span>Never</span>
+                                          </label>
+                                        </p>
+                                        <p>
+                                          <label>
+                                            <input name="group1" type="radio" id="" value="10">
+                                            <span>occasionally</span>
+                                          </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                <input  name="group1" type="radio" id="" value="15"/>
+                                                <span>Neutral</span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                <input  name="group1" type="radio" id="" value="20"/>
+                                                <span>Sometimes</span>
+                                            </label>
+                                        </p>
+                                        <p>
+                                            <label>
+                                                <input  name="group1" type="radio" id="" value="25"/>
+                                                <span>Very Often</span>
+                                            </label>
+                                        </p>
 
-                        <div class="row ">
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>    
+                                        <a class="btn waves-effect light-blue darken-1 next">Next</a>
+
+                                </form>  
+                            </div>
                         </div>
+    
                     </div>
 
-                </div>
 
                 <div class="carousel-item white-text" href="#five!">
 
                    <div class="survey-question">
 
-                        <p class="white-text">Question Five:</p>
-
+                        <h3 class="white-text">how often are you upset when things happen to you outside of your control?</h3>
                         <div class="row ">
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>
-                                <button class="card emoji z-depth-0" id="" value="">😀</button>    
+                            
+                            <form class="Survey-form" action="#">
+
+                                <p>
+                                    <label>
+                                    <input name="group1" type="radio" id="" value="5"/>
+                                    <span>Never </span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                    <input name="group1" type="radio" id="" value="10">
+                                    <span>occasionally</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="15"/>
+                                        <span>Neutral</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="20"/>
+                                        <span>Sometimes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input  name="group1" type="radio" id="" value="25"/>
+                                        <span>Very Often</span>
+                                    </label>
+                                </p>
+
+                                <a class="btn waves-effect light-blue darken-2" id="submit-survey">Submit</a>
+
+                            </form> 
+
                         </div>
 
                     </div>
 
-                    <a class="btn waves-effect light-blue darken-2" id="">Submit Survey</a>
                 </div>
             
             
@@ -201,17 +315,17 @@
     </footer>
 
     <!-- Materialize JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Modal Script -->
-    <script>
-         $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true,
-        noWrap: false
+    <script type="text/javascript">
 
-        });
+         // userId will be the user id that we get back from api request
+        //  window.location.href = '/results/' + userId
     </script>
+    <script type="text/javascript" src="js/survey.js"></script>
+
 
 </body>
 

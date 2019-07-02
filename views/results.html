@@ -15,7 +15,6 @@
 		<link rel="stylesheet" href="assets/css/results.css" type="text/css" />
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
-
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -27,42 +26,23 @@
 
 	<body id="results-page">
 
-
-		<header>Result Page</header>
-
-		<nav class="navbar">
-			<div id="logoNav">
-				<h1>(Logo) Tranquil</h1>
-			</div>
-			<!--Nav Bar-->
-			<ul class="nav justify-content-end">
-				<li class="nav-item">
-					<a class="nav-link" href="#signUpModal">Sign Up</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active " href="main.html">Home</a>
-				</li>
-			</ul>
-		</nav>
-
-
+		<header>
 			<!-- Header Nav Section    -->
 			<nav class="mainHeader z-depth-0">
 				
 				<div class="nav-wrapper">
 	
-					<a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
+					<a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 	
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
 						<li><a class="black-text" href="/">Home</a></li>
 					</ul>
+	
 				</div>
+	
 			</nav>
 	
-
+		</header>
 
 		<!--div for stress meter, boiler plate -->
 		<div class="container">
@@ -107,99 +87,113 @@
 		</div>
 
 		<script type="text/javascript">
-			var gaugeOptions = {
-				chart: {
-					type: "solidgauge"
-				},
+			// get the user id from the url of the browser from below
+			// var browserURL = window.location.href;
+			// make get request to get user information
+			// then display users score
 
-				title: null,
+			var theId;
 
-				pane: {
-					center: ["50%", "85%"],
-					size: "160%",
-					startAngle: -90,
-					endAngle: 90,
-					background: {
-						backgroundColor:
-							(Highcharts.theme &&
-								Highcharts.theme.background2) ||
-							"#EEE",
-						innerRadius: "60%",
-						outerRadius: "100%",
-						shape: "arc"
-					}
-				},
-
-				tooltip: {
-					enabled: false
-				},
-
-				// the value axis
-				yAxis: {
-					stops: [
-						[0.1, "#55BF3B"], // green
-						[0.5, "#DDDF0D"], // yellow
-						[0.9, "#DF5353"] // red
-					],
-					lineWidth: 0,
-					minorTickInterval: null,
-					tickAmount: 2,
-					title: {
-						y: -70
+			$.get("/users/" + theId).then(function(data) {
+				var score = data.score;
+				var gaugeOptions = {
+					chart: {
+						type: "solidgauge"
 					},
-					labels: {
-						y: 16
-					}
-				},
 
-				plotOptions: {
-					solidgauge: {
-						dataLabels: {
-							y: 5,
-							borderWidth: 0,
-							useHTML: true
-						}
-					}
-				}
-			};
+					title: null,
 
-			// The speed gauge
-			var chartSpeed = Highcharts.chart(
-				"container-speed",
-				Highcharts.merge(gaugeOptions, {
-					yAxis: {
-						min: 0,
-						max: 200,
-						title: {
-							text: ""
+					pane: {
+						center: ["50%", "85%"],
+						size: "160%",
+						startAngle: -90,
+						endAngle: 90,
+						background: {
+							backgroundColor:
+								(Highcharts.theme &&
+									Highcharts.theme.background2) ||
+								"#EEE",
+							innerRadius: "60%",
+							outerRadius: "100%",
+							shape: "arc"
 						}
 					},
 
-					credits: {
+					tooltip: {
 						enabled: false
 					},
 
-					series: [
-						{
-							name: "Speed",
-							//this is the user's score//
-							data: [150],
+					// the value axis
+					yAxis: {
+						stops: [
+							[0.1, "#55BF3B"], // green
+							[0.5, "#DDDF0D"], // yellow
+							[0.9, "#DF5353"] // red
+						],
+						lineWidth: 0,
+						minorTickInterval: null,
+						tickAmount: 2,
+						title: {
+							y: -70
+						},
+						labels: {
+							y: 16
+						}
+					},
+
+					plotOptions: {
+						solidgauge: {
 							dataLabels: {
-								format:
-									'<div style="text-align:center"><span style="font-size:25px;color:' +
-									((Highcharts.theme &&
-										Highcharts.theme.contrastTextColor) ||
-										"black") +
-									'">{y}</span><br/>' +
-									'<span style="font-size:12px;color:silver">stress meter</span></div>'
-							},
-							tooltip: {
-								valueSuffix: " stress meter"
+								y: 5,
+								borderWidth: 0,
+								useHTML: true
 							}
 						}
-					]
-				})
-			);
+					}
+				};
+
+				// The speed gauge
+				var chartSpeed = Highcharts.chart(
+					"container-speed",
+					Highcharts.merge(gaugeOptions, {
+						yAxis: {
+							min: 0,
+							max: 200,
+							title: {
+								text: ""
+							}
+						},
+
+						credits: {
+							enabled: false
+						},
+
+						series: [
+							{
+								name: "Speed",
+								//this is the user's score//
+								data: [150],
+								dataLabels: {
+									format:
+										'<div style="text-align:center"><span style="font-size:25px;color:' +
+										((Highcharts.theme &&
+											Highcharts.theme.contrastTextColor) ||
+											"black") +
+										'">{y}</span><br/>' +
+										'<span style="font-size:12px;color:silver">stress meter</span></div>'
+								},
+								tooltip: {
+									valueSuffix: " stress meter"
+								}
+							}
+						]
+					})
+				);
+
+
+
+			});
+
 		</script>
 		<script>
 			// 2. This code loads the IFrame Player API code asynchronously.
@@ -256,22 +250,16 @@
 
 		<!--JavaScript at end of body for optimized loading-->
 
-		<script
-			type="text/javascript"
-			src="js/materialize.js"
-		></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
 
 		<!-- Site Footer -->
 		<footer style="position:fixed;bottom:0;left:0;width:100%;">
-			
 			<div class="footer-copyright">
-
 				<div id="footer-content">
 					© 2019 Copyright
 					<a class="black-text right" href="/">Home</a>
 				</div>
 			</div>
 		</footer>
-	
 	</body>
 </html>

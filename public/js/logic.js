@@ -1,173 +1,68 @@
-
 //When we click the register submit button, we will check for userId and password requirements//
 var userInfo;
+//=============Registration Code ==================
+/*/This makes an ajax post request to tranquilController. 
+The controller will validate the userInfo object meets our account creation requirements.
+If successful, we'll redirect to /survey, if not, we'll display an error message/*/
 
 $("#register-submit").on("click", function(event) {
+  console.log("clicked");
   event.preventDefault();
   $(".input-field").trigger("reset");
-    userInfo = {
+  userInfo = {
     name: $("#input-name").val(),
     userId: $("#input-userId").val(),
     password: $("#input-password").val()
-
-    };
-  blankUsername();
-};
-
-function blankUsername() {
-  if (userInfo.userId === "") {
-    $("small").text("Please type a valid userId.");
-  }
-  else checkPasswordLength();
-
-function checkPasswordLength() {
-  if (userInfo.password.length < 8) {
-    $("small").text("Your password needs to have between 8-20 characters");
-  }
-  else checkUserId();
-
-}
-function checkUserId() {
+  };
+  console.log(userInfo);
   $.ajax("/api/registration", {
     type: "POST",
     data: userInfo
   }).then(function(data) {
-    console.log("checking against existing usernames");
-    //here we need the router.post in the controller to check if the userId exists in the db.
-    //it should check req.params or req.body?//
-    //it should res.json(true) if userId is valid and doesn't exist in the db.
-    //it should return res.json(false) if userId already exists.
-    if (data) { 
-      $("small").text("UserId " + userInfo.userId + " successfully created.");
-    }
-    else $("small").text("The userId" + userInfo.userId + " already exists. Try a different one.")
-  })
-}
+    if (data) {
+      window.location.href = "/survey";
+    } else $("small").text("insert error message from controller");
+  });
+});
 
+//=============Login Code ==================
+/*/ Here we make another ajax POST request
+The controller will validate loginInput object has matching userId and password.
+If successful, we'll redirect to /survey, if not, we'll display an error message/*/
 
-// var profiles = require("./user-profiles");
+$("#login-submit").on("click", function(event) {
+  console.log("clicked login");
+  event.preventDefault();
+  $(".input-field").trigger("reset");
+  var loginInput = {
+    userId: $("#userId").val(),
+    password: $("#password").val()
+  };
+  $.ajax("/api/login", {
+    type: "POST",
+    data: loginInput
+  }).then(function(data) {
+    console.log("sending login info for validation");
+    //if the controller verifies the login information as correct we will reload to /survey"
+    if (data) {
+      window.location.href = "/survey";
+    } else $("small").text("Invalid userId and/or password. Please try again");
+  });
+});
 
-// var userInput = {
-//   name: "",
-//   password: "",
-//   category: "",
-//   data: []
-// };
-
-// var mockName = "Luc";
-// var mockPassword = "Tang";
-// var mockCategory = "yoga";
-// var mockInput = [5, 7, 9, 5, 4];
-
-// userInput.data = mockInput;
-// userInput.category = mockCategory;
-// userInput.name = mockName;
-// userInput.password = mockPassword;
-
-// PSEUDOCODED USER AUTHENTICATION (GREG) ////////////////
-// (For sign-up flow)
-// 1. Capture user's inputs from the survey for proposed username and password
-
-//        - Parameters:
-//                - Username is certain set of characters
-//                - Password meets length and also character requirements
-//                - If current username already exists then user must choose another username
-// 2. If username and password are BOTH valid, then the new user's data will get stored in our database
-// 3. Once user fills out the form, user is automatically logged in and their results are generated
-// $("#sign-up-button").on("click", function(event) {
-//   event.preventDefault();
-//   var username = $("#inputID").val();
-//   var password = $("#input-password").val();
-//   var existingUsernameArray = [];
-
-
-//   if (username === "") {
-//     // if user's username input is blank
-//     $("#existing-username-text").remove();
-//     $("#password-length-wrong").remove();
-//     $("#blank-username-text").remove();
-//     blankUsername(); // Appends an error message below input field
-//   } else if (
-//     existingUsernameArray.includes(username) === true &&
-//     (password.length >= 8 && password.length <= 20)
-//   ) {
-//     // if there is already an existing username
-//     $("#existing-username-text").remove();
-//     $("#password-length-wrong").remove();
-//     $("#blank-username-text").remove();
-//     takenUsername(); // Appends existing username error message below input field
-//   } else if (
-//     existingUsernameArray.includes(username) === false &&
-//     (password.length < 8 || password.length > 20)
-//   ) {
-//     // if the password is an invalid length
-//     $("#existing-username-text").remove();
-//     $("#password-length-wrong").remove();
-//     $("#blank-username-text").remove();
-//     invalidPasswordLength(); // Appends invalid password length message below input field
-//   } else if (
-//     existingUsernameArray.includes(username) === true &&
-//     (password.length < 8 || password.length > 20)
-//   ) {
-//     // if there is already an existing username and password is an invalid length
-//     $("#existing-username-text").remove();
-//     $("#password-length-wrong").remove();
-//     $("#blank-username-text").remove();
-//     takenUsername();
-//     invalidPasswordLength();
-//   } else if (
-//     existingUsernameArray.includes(username) === false && // *SUCCESS CASE = LUC*
-//     (password.length >= 8 && password.length <= 20)
-//   ) {
-//     // if user's username does not exist, and password is WITHIN length
-//     // MORE LOGIC HERE
-//   }
-// });
-
-// // (For existing users that are logging in)
-// $("#login-button").on("click", function(event) {
-//   event.preventDefault();
-//   var username = $("#login-username").val();
-//   var password = $("#login-password").val();
-
-//   // MySQL query to loop through username and password in database
-//   // if statement checking for matching username and password in database
-//   // logic to give the current user their survey reponse from database
-
-//   // else if to display error message that username and password do not match any of those in the database
-//   wrongUsernamePassword();
-
-//   // clear input field
-//   $("#login-username").val("");
-//   $("#login-password").val("");
-// });
-// // 1. Capture's user's inputs from login flow and compares it to existing user IDs usernames and passwords in the database
-// //      - If username and password do not match, error message displayed below input bars stating to retype info
-// // 2. If username and password match, user is logged in and results from previous form input is displayed
-// //
-
-// /* PSEUDOCODED SEARCH BAR FUNCTIONALITY (GREG) (NICE-TO-HAVE)//////////////
-// // 1. Search Bar would exist at top of the page
-// // 2. Users can filter through categories in the search bar
-// //         - Categories: Yoga, Meditation, Exercise
-// // 3. Conditions for the filter
-// //         - Filter would take inputs as strings
-// //         - Filter would check for matching sequences between the user's inputs and the values in that category in the database
-// //         - Filtered search would render below the search bar in a box that contains the options
-// //         - Options would be dynamic and would maybe be able to be clicked so that they would get appended in the right section
-// //         - Filter would contain a reset button as well
-// */
-
+//=============Survey Code ==================
+/*/ Here we make another ajax POST request where we send over the user's score, and wait for a response
+/*/
 function scoreCalculator(userInput) {
   var score = 0;
   for (let i = 0; i < userInput.data.length; i++) {
     score += userInput.data[i];
   }
   console.log({ score });
-  assessment(userInput, score);
+  // assessment(userInput, score);
 }
 
-scoreCalculator(userInput);
+// scoreCalculator(userInput);
 
 function assessment(userInput, score) {
   console.log({ userInput });
@@ -203,7 +98,6 @@ function exercise(data) {
   console.log(data);
 }
 
-
 // function takenUsername() {
 //   // var wrongUsernameContainer = $("<small>");
 //   wrongUsernameContainer.addClass(
@@ -215,21 +109,21 @@ function exercise(data) {
 //   $(".username-input-form").append(wrongUsernameContainer);
 // }
 
-function checkPasswordLength() {
-  // var invalidPasswordContainer = $("<small>");
-  invalidPasswordContainer.addClass(
-    "form-text text-muted password-length-wrong"
-  );
-  invalidPasswordContainer.text("Your password is an invalid length!");
-  $("#passwordHelpBlock").append(invalidPasswordContainer);
-}
+// function checkPasswordLength() {
+//   // var invalidPasswordContainer = $("<small>");
+//   invalidPasswordContainer.addClass(
+//     "form-text text-muted password-length-wrong"
+//   );
+//   invalidPasswordContainer.text("Your password is an invalid length!");
+//   $("#passwordHelpBlock").append(invalidPasswordContainer);
+// }
 
-function wrongUsernamePassword() {
-  $(".wrong-loginInfo-text").remove();
-  // var loginErrorContainer = $("<small>");
-  loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
-  loginErrorContainer.text(
-    "Your username and/or password information are incorrect. Please try again."
-  );
-  $(".user-login-password-container").append(loginErrorContainer);
-}
+// function wrongUsernamePassword() {
+//   $(".wrong-loginInfo-text").remove();
+//   // var loginErrorContainer = $("<small>");
+//   loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
+//   loginErrorContainer.text(
+//     "Your username and/or password information are incorrect. Please try again."
+//   );
+//   $(".user-login-password-container").append(loginErrorContainer);
+// }

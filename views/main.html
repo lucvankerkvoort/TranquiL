@@ -26,7 +26,7 @@
             
             <div class="nav-wrapper">
 
-                <a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
+                <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a class="black-text" href="/">Home</a></li>
@@ -48,7 +48,7 @@
 
                     <!-- <div class="card-content"> -->
                         
-                        <h4 class="header">(logo) Tranquil</h4>
+                        <h4 class="header"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="200" alt="Tranquil"></h4>
 
                         <span class="card-title">  
                             <h6 class="header">Please Sign in</h6>
@@ -63,7 +63,7 @@
                                 <label for="userId">User Id</label>
                             </div>
     
-                            <div class="input-field">
+                            <div class="input-field password-div">
                                 <i class="material-icons prefix">lock_outline</i>
                                 <input id="password" type="password" class="validate">
                                 <label for="password">Password</label>
@@ -73,7 +73,7 @@
                         
                         <!-- Login Button -->
                         <div class="card-action">
-                                <button class="btn waves-effect waves-light light-blue darken-2" type="submit" name="action">Login</button>
+                                <button class="btn waves-effect waves-light light-blue darken-2" type="submit" name="action" id="login-submit">Login</button>
                         </div>
                         <!-- Link to Register -->
                         <div class="card-action">
@@ -95,7 +95,7 @@
 
                 <form class="center">
 
-                    <h4 class="header">(logo) Tranquil</h4>
+                    <h4 class="header"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="200" alt="Tranquil"></h4>
 
                     <span class="card-title">
                         
@@ -110,14 +110,14 @@
                         
                     </div>
 
-                    <div class="input-field">
+                    <div class="input-field userId-div">
                         <i class="material-icons prefix">person_add</i>
                         <input type="text" id="input-userID" class="validate" >
                         <label for="userId">User Id</label>
                         <!-- <p>UserId should be no more than 8</p> -->
                     </div>
 
-                    <div class="input-field">
+                    <div class="input-field password-signup-div">
                         <i class="material-icons prefix">lock_outline</i>
                         <input id="input-password" type="password" class="validate">
                         <label for="password">Password</label>
@@ -126,7 +126,7 @@
                                 
                     <!-- Login -->
                     <div class="card-action">
-                            <button class="btn waves-effect waves-light light-blue darken-2" type="submit" name="action">Submit</button>
+                            <button class="btn waves-effect waves-light light-blue darken-2" type="submit" name="action" id="register-submit">Submit</button>
                     </div>
 
                 </form>
@@ -150,7 +150,7 @@
     </footer>
 
     <!-- Materialize JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Modal Script -->
     <script>
@@ -159,6 +159,7 @@
         console.log("this works.")
         });
     </script>
+    <script type="text/javascript" src="js/logic.js"></script>
 
 </body> 
 
