@@ -86,14 +86,18 @@ router.get("/result", function(req, res) {
     var medId = meditation[medRandom];
     var exeId = exercise[exerRandom];
 
-    console.log({ medId2 });
     // This is the current users id
     var id = user.id;
+
     // and into the user_info table so that they are connected to the user
     // This is for reusability of the video's when the user log's back in
-    userInfo.update({ meditationvid: medId }, ["id =" + id], function(result) {
-      console.log(result);
-    });
+    userInfo.update(
+      { meditationvid: medId, exercisevid: exeId },
+      ["id =" + id],
+      function(result) {
+        console.log({ result });
+      }
+    );
 
     // We store all the info we want to send off to the HTML/Handlebars page in an object
     var hbsobj = {

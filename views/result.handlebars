@@ -187,21 +187,19 @@
         meditationplayer = new YT.Player("meditation-player", {
             height: "200",
             width: "300",
-            videoId: {{ this.video_meditation }}
-    events: {
-        // onReady: onPlayerReady,
-        onStateChange: onPlayerStateChange
-    }
+            videoId: "{{ meditation }}",
+            events: {
+                onStateChange: onPlayerStateChange
+            }
         });
-    exerciseplayer = new YT.Player("exercise-player", {
-        height: "200",
-        width: "300",
-        videoId: {{ this.video_exercises }}
-        events: {
-            // onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange
-        }
-    });
+        exerciseplayer = new YT.Player("exercise-player", {
+            height: "200",
+            width: "300",
+            videoId: "{{ exercise }}",
+            events: {
+                onStateChange: onPlayerStateChange
+            }
+        });
     }
 
     // 4. The API will call this function when the video player is ready.
