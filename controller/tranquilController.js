@@ -43,15 +43,68 @@ router.get("/data-output", function(req, res) {
 
 // We set the route to our results page
 router.get("/result", function(req, res) {
-  score;
+  // we grab the last user from the user_info table
   userInfo.all(function(result) {
-    score = result.pop().score;
-    console.log(score);
+    // we store it into a container
+    var user = result.pop();
+
+    // We grab the video's from the data_output table
+    dataOutput.all(function(result) {
+      // We set both the values as parameters for our invoked function so we can manipulate the data for our own use
+      renderResult(user, result);
+    });
   });
-  dataOutput.all(function(result) {
-    console.log(result);
-  });
-  res.render("result");
+
+  // We create the function with parameters
+  function renderResult(user, result) {
+    // We check the current user's score (last Id in the list)
+    var userScore = user.score;
+
+    // We create empty arrays to store the video id's into
+    var meditation = [];
+    var exercise = [];
+
+    // we run through all the data in the data_output table (the video's)
+    for (let i = 0; i < result.length; i++) {
+      // We grab the minimal and maximum scores for each of the video's
+      var min = result[i].min;
+      var max = result[i].max;
+
+      // We check whether the users score is inbetween the min and max of any of the video's
+      if (userScore >= min && userScore <= max) {
+        // We then store the video's that match the userscore into a mediation and exercise container
+        meditation.push(result[i].meditation);
+        exercise.push(result[i].exercise);
+      }
+    }
+
+    // We randomly select one of the meditation and one of the exercise video
+    var medRandom = Math.floor(Math.random() * meditation.length);
+    var exerRandom = Math.floor(Math.random() * meditation.length);
+
+    // Store those in containers
+    var medId = meditation[medRandom];
+    var exeId = exercise[exerRandom];
+
+    console.log({ medId2 });
+    // This is the current users id
+    var id = user.id;
+    // and into the user_info table so that they are connected to the user
+    // This is for reusability of the video's when the user log's back in
+    userInfo.update({ meditationvid: medId }, ["id =" + id], function(result) {
+      console.log(result);
+    });
+
+    // We store all the info we want to send off to the HTML/Handlebars page in an object
+    var hbsobj = {
+      description: result.description,
+      meditation: medId,
+      exercise: exeId,
+      user: user
+    };
+    // We render the page with the object in it.
+    res.render("result", hbsobj);
+  }
 });
 // API ROUTES
 // ----------------------------------------------------------------------

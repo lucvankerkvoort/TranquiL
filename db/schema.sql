@@ -17,8 +17,8 @@ CREATE TABLE user_info
     (45),
     score INT
     (10),
-    video_meditation VARCHAR(300),
-    video_exercises VARCHAR(300),
+    meditationvid VARCHAR(300),
+    exercisevid VARCHAR(300),
     PRIMARY KEY
     (id)
 );
