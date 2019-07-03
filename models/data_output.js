@@ -7,7 +7,7 @@ var dataOutput = {
   all: function(cb) {
     orm.all("data_output", function(res) {
       cb(res);
-      console.log(res);
+      // console.log(res);
     });
   },
   // we read specific columns from the database
