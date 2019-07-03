@@ -113,7 +113,6 @@ router.get("/result", function(req, res) {
 // API ROUTES
 // ----------------------------------------------------------------------
 // This is the post request for the registration
-
 router.post("/api/registration", function(req, res) {
   var userProfile = req.body;
   var userInformation = userInfo.all(function(res) {
