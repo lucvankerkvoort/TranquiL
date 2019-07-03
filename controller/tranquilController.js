@@ -11,8 +11,6 @@ var router = express.Router();
 var id = [];
 // HTML ROUTES
 // ----------------------------------------------------------------------
-// Yipiekayeey MF
-// WORKING ROUTES
 // We set the route for our home page
 router.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/main.html"));
@@ -22,24 +20,6 @@ router.get("/", function(req, res) {
 router.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "../views/survey.html"));
 });
-
-// We set the route to our results page
-// router.get("/result", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/results.html"));
-// });
-
-router.get("/data-output", function(req, res) {
-  res.sendFile(path.join(__dirname, "../views/addvideo.html"));
-});
-// TEST ROUTES
-// router.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../test-pages/test-main.html"));
-// });
-
-// // We set the route for our survey page
-// router.get("/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../views/test_survey.html"));
-// });
 
 // We set the route to our results page
 router.get("/result", function(req, res) {
@@ -63,6 +43,7 @@ router.get("/result", function(req, res) {
     // We create empty arrays to store the video id's into
     var meditation = [];
     var exercise = [];
+    var description = [];
 
     // we run through all the data in the data_output table (the video's)
     for (let i = 0; i < result.length; i++) {
@@ -75,6 +56,7 @@ router.get("/result", function(req, res) {
         // We then store the video's that match the userscore into a mediation and exercise container
         meditation.push(result[i].meditation);
         exercise.push(result[i].exercise);
+        description.push(result[i].description);
       }
     }
 
@@ -84,6 +66,7 @@ router.get("/result", function(req, res) {
 
     // Store those in containers
     var medId = meditation[medRandom];
+    var descId = description[medRandom];
     var exeId = exercise[exerRandom];
 
     // This is the current users id
@@ -101,7 +84,7 @@ router.get("/result", function(req, res) {
 
     // We store all the info we want to send off to the HTML/Handlebars page in an object
     var hbsobj = {
-      description: result.description,
+      description: descId,
       meditation: medId,
       exercise: exeId,
       user: user
@@ -151,29 +134,11 @@ router.post("/api/registration", function(req, res) {
     (userInfo.password.length >= 8 && userInfo.password.length <= 20)
   ) {
     res.send(["THIS USERNAME IS ALREADY TAKEN. PLEASE ENTER ANOTHER USERNAME"]);
-    // $(".password-length-wrong").remove();
-    // $(".existing-username-text").remove();
-    // let wrongUsernameContainer = $("<small>");
-    // wrongUsernameContainer.addClass(
-    //   "form-text text-muted existing-username-text"
-    // );
-    // wrongUsernameContainer.text(
-    //   "This username is already taken. Please enter another username."
-    // );
-    // $(".userId-div").append(wrongUsernameContainer);
   } else if (
     existingUsernameArray.includes(userInfo.userId) === false &&
     (userInfo.password.length < 8 || userInfo.password.length > 20)
   ) {
     res.send(["Your password is an invalid length!"]);
-    // $(".existing-username-text").remove();
-    // $(".password-length-wrong").remove();
-    // let invalidPasswordContainer = $("<small>");
-    // invalidPasswordContainer.addClass(
-    //   "form-text text-muted password-length-wrong"
-    // );
-    // invalidPasswordContainer.text("Your password is an invalid length!");
-    // $("password-signup-div").append(invalidPasswordContainer);
   } else if (
     existingUsernamesArray.includes(userInfo.userId) === true &&
     (userInfo.password.length < 8 || userInfo.password.length > 20)
@@ -182,23 +147,6 @@ router.post("/api/registration", function(req, res) {
       "This username is already taken. Please go bo back to the login screen or use a different username.",
       "Your password is an invalid length!"
     ]);
-    // if there is already an existing username
-    // $(".existing-username-text").remove();
-    // $(".password-length-wrong").remove();
-    // let wrongUsernameContainer = $("<small>");
-    // wrongUsernameContainer.addClass(
-    //   "form-text text-muted existing-username-text"
-    // );
-    // wrongUsernameContainer.text(
-    //   "This username is already taken. Please go bo back to the login screen or use a different username."
-    // );
-    // $(".userId-div").append(wrongUsernameContainer);
-    // var invalidPasswordContainer = $("<small>");
-    // invalidPasswordContainer.addClass(
-    //   "form-text text-muted password-length-wrong"
-    // );
-    // invalidPasswordContainer.text("Your password is an invalid length!");
-    // $(".password-signup-div").append(invalidPasswordContainer);
   }
 });
 
@@ -222,10 +170,9 @@ router.post("/api/login", function(req, res) {
         userProfile.userId === existingUsernamesArray[i] &&
         userProfile.password === existingPasswordsArray[i]
       ) {
-        console.log("PLEASE PUT CODE HERE");
         currentUser.push(res[i].name);
-        currentUser.push(res[i].videoLink1);
-        currentUser.push(res[i].videoLink2);
+        currentUser.push(res[i].meditationvid);
+        currentUser.push(res[i].exercisevid);
         var profile = {
           currentUser: currentUser
         };
@@ -237,16 +184,6 @@ router.post("/api/login", function(req, res) {
     currentUser.push(count);
     console.log(res);
   });
-
-  // if (count === existingUsernamesArray.length) {
-  //   $(".wrong-loginInfo-text").remove();
-  //   var loginErrorContainer = $("<small>");
-  //   loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
-  //   loginErrorContainer.text(
-  //     "Your username and/or password information are incorrect. Please try again."
-  //   );
-  //   $(".password-div").append(loginErrorContainer);
-  // }
 });
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
