@@ -74,7 +74,7 @@ small {
   margin: 0 auto;
 }
 
-/* For Login form on main page */
+/* ======= For Login form on main page ======== */
 #loginCard {
   margin-top: 50px;
   background-color: rgba(152, 191, 234, 0.5);
@@ -141,8 +141,10 @@ small {
 
 .emoji {
   font-size: 100px;
-  background-color: transparent;
-  border: none;
+}
+
+.answers:hover {
+    transform: scale(1.5); 
 }
 
 #emoji-question label {
@@ -150,16 +152,8 @@ small {
   cursor: pointer;
 }
 
-/* .emoji {
-    font-size: 100px;
-    background-color: transparent;
-    transition: transform .2s;   
-} */
-
 .emoji:hover {
-  transform: scale(
-    1.5
-  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 [type="radio"]:checked + span:after {
