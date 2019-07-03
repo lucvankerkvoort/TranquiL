@@ -199,6 +199,10 @@ footer {
   margin-right: 10px;
 }
 
+.hide {
+    display: none;
+}
+
 .existing-username-text {
   color: red !important;
 }

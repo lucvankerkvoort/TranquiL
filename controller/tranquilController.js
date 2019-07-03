@@ -96,11 +96,45 @@ router.get("/result", function(req, res) {
 // API ROUTES
 // ----------------------------------------------------------------------
 // This is the post request for the registration
-
 router.post("/api/registration", function(req, res) {
   var userProfile = req.body;
-  var userInformation = userInfo.all(function(res) {
-    console.log(res);
+  console.log("in the post route");
+  console.log(req.body);
+  console.log("userProfile" + userProfile);
+  userInfo.all(function(response) {
+    var existingUsernamesArray = [];
+    var object = {
+      data: response
+    };
+    var registerInfo = object.data;
+    console.log(JSON.stringify(object));
+    for (var i = 0; i < registerInfo.length; i++) {
+      existingUsernamesArray.push(registerInfo[i].username);
+    }
+    console.log(existingUsernamesArray);
+    console.log(typeof userProfile.name);
+    console.log("this is the name of the user " + userProfile.name);
+    console.log("length of password " + userProfile.password.length);
+    if (
+      existingUsernamesArray.includes(userProfile.name) === false &&
+      userProfile.password.length >= 8 &&
+      userProfile.password.length <= 20
+    ) {
+      // ----------------------------------------------------------------------
+      // Here we connect to the database using the ORM and sending all the data to the table
+      userInfo.create(
+        ["username", "password", "name"],
+        [userProfile.userId, userProfile.password, userProfile.name],
+        function(result) {
+          // We get back the ID of the user so we can match the score from the survey with the username password
+          id = result.insertId;
+          console.log({ id });
+          res.json(id);
+        }
+      );
+      // User Registration Authentication
+      // ----------------------------------------------------------------------
+    }
   });
   var existingUsernamesArray = [];
 
