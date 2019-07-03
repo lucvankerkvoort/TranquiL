@@ -1,58 +1,58 @@
+ // Survey Carousel Script
+$(document).ready(function() {
 
-// Survey Modal Script
-$('.carousel.carousel-slider').carousel({
+    // ====== Carousel Functionality ======
+
+    // controls carousel slider
+    $('.carousel.carousel-slider').carousel({
     fullWidth: true,
     indicators: true,
     noWrap: false
-
-    })
-
+    });
+    // controls next button on carousel
     $('.next').click(function() {
             $('.carousel.carousel-slider').carousel('next');
     });
-
-    $('.prev').click(function() {
+    // controls back button on carousel
+    $('.back').click(function() {
         $('.carousel.carousel-slider').carousel('prev');
     });
     
+    // ====== Survey Score Logic ======
 
-
-// Survey logic
-$(document).ready(function() {
-
+    // runs upon click of Submit Button
     $("#submit-survey").click(function() {
-
         event.preventDefault();
 
-        // Object for userInput values:
+        // object for userInput values:
         var userInput = {
             data: []
         };
 
+        // capture the number of current survey questions for future scaling
         var answerCount = document.getElementsByClassName("Survey-form").length;
         console.log("Total number of questions " + answerCount);
 
-        //Loop over all questoins
+        // capture survey questions radio input
         $(".Survey-form").each(function() {
-
-        // for (let i = 1; i < answerCount; i++) {
-            
+            // capture value of checked radio answers
             var userScore = $("input[name='group1']:checked", $(this)).val();
+            // console.log(userScore);
+
+            // capture the score of user from radios and push to data array within UserInput object
+            userInput.data.push(userScore);
             
-            if (userScore !== undefined) {
-                userInput.data.push(userScore);                
-            }
-            // add if statements to validate that all questions have been checked. 
-            console.log(JSON.stringify(userInput))
+            // console.log(JSON.stringify(userInput));
 
-            // Post Request 
-
+            // Post the UserInput object:
             $.post("/api/survey", userInput, function(data){
+                console.log(userInput)
                 console.log(data);
-
+                // Route to the Results page:
                 window.location.replace("/result");
             });
         });
     });
+
 });
 
