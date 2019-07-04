@@ -136,54 +136,64 @@ router.post("/api/registration", function(req, res) {
       // ----------------------------------------------------------------------
     }
   });
-  var existingUsernamesArray = [];
-
-  // User Registration Authentication
-  // ----------------------------------------------------------------------
-
-  for (var i = 0; i < userInformation.length; i++) {
-    existingUsernamesArray.push(userInformation[i].username);
-  }
-
-  if (
-    existingUsernamesArray.includes(userInfo.userId) === false &&
-    (userInfo.password.length >= 8 && userInfo.password.length <= 20)
-  ) {
-    // ----------------------------------------------------------------------
-    // Here we connect to the database using the ORM and sending all the data to the table
-    userInfo.create(
-      ["username", "password", "name"],
-      [userProfile.userId, userProfile.password, userProfile.name],
-      function(result) {
-        // We get back the ID of the user so we can match the score from the survey with the username password
-        id = result.insertId;
-        console.log({ id });
-        res.json(id);
-      }
-    );
-    // ROUTE TO SURVEY PAGE
-    // The route goes to the survey since username and password pass the criteria
-  } else if (
-    existingUsernamesArray.includes(userInfo.userId) === true &&
-    (userInfo.password.length >= 8 && userInfo.password.length <= 20)
-  ) {
-    res.send(["THIS USERNAME IS ALREADY TAKEN. PLEASE ENTER ANOTHER USERNAME"]);
-  } else if (
-    existingUsernameArray.includes(userInfo.userId) === false &&
-    (userInfo.password.length < 8 || userInfo.password.length > 20)
-  ) {
-    res.send(["Your password is an invalid length!"]);
-  } else if (
-    existingUsernamesArray.includes(userInfo.userId) === true &&
-    (userInfo.password.length < 8 || userInfo.password.length > 20)
-  ) {
-    res.send([
-      "This username is already taken. Please go bo back to the login screen or use a different username.",
-      "Your password is an invalid length!"
-    ]);
-  }
 });
-
+//   );
+//   // ROUTE TO SURVEY PAGE
+//   // The route goes to the survey since username and password pass the criteria
+// } else if (
+//   existingUsernamesArray.includes(userInfo.userId) === true &&
+//   (userInfo.password.length >= 8 && userInfo.password.length <= 20)
+// ) {
+//   res.send(["THIS USERNAME IS ALREADY TAKEN. PLEASE ENTER ANOTHER USERNAME"]);
+//   // $(".password-length-wrong").remove();
+//   // $(".existing-username-text").remove();
+//   // let wrongUsernameContainer = $("<small>");
+//   // wrongUsernameContainer.addClass(
+//   //   "form-text text-muted existing-username-text"
+//   // );
+//   // wrongUsernameContainer.text(
+//   //   "This username is already taken. Please enter another username."
+//   // );
+//   // $(".userId-div").append(wrongUsernameContainer);
+// } else if (
+//   existingUsernameArray.includes(userInfo.userId) === false &&
+//   (userInfo.password.length < 8 || userInfo.password.length > 20)
+// ) {
+//   res.send(["Your password is an invalid length!"]);
+//   // $(".existing-username-text").remove();
+//   // $(".password-length-wrong").remove();
+//   // let invalidPasswordContainer = $("<small>");
+//   // invalidPasswordContainer.addClass(
+//   //   "form-text text-muted password-length-wrong"
+//   // );
+//   // invalidPasswordContainer.text("Your password is an invalid length!");
+//   // $("password-signup-div").append(invalidPasswordContainer);
+// } else if (
+//   existingUsernamesArray.includes(userInfo.userId) === true &&
+//   (userInfo.password.length < 8 || userInfo.password.length > 20)
+// ) {
+//   res.send([
+//     "This username is already taken. Please go bo back to the login screen or use a different username.",
+//     "Your password is an invalid length!"
+//   ]);
+//   // if there is already an existing username
+//   // $(".existing-username-text").remove();
+//   // $(".password-length-wrong").remove();
+//   // let wrongUsernameContainer = $("<small>");
+//   // wrongUsernameContainer.addClass(
+//   //   "form-text text-muted existing-username-text"
+//   // );
+//   // wrongUsernameContainer.text(
+//   //   "This username is already taken. Please go bo back to the login screen or use a different username."
+//   // );
+//   // $(".userId-div").append(wrongUsernameContainer);
+//   // var invalidPasswordContainer = $("<small>");
+//   // invalidPasswordContainer.addClass(
+//   //   "form-text text-muted password-length-wrong"
+//   // );
+//   // invalidPasswordContainer.text("Your password is an invalid length!");
+//   // $(".password-signup-div").append(invalidPasswordContainer);
+// }
 router.post("/api/login", function(req, res) {
   // User Login Authentication
   // ----------------------------------------------------------------------
@@ -193,20 +203,19 @@ router.post("/api/login", function(req, res) {
     var existingUsernamesArray = [];
     var existingPasswordsArray = [];
     var currentUser = [];
-
     for (var i = 0; i < res.length; i++) {
       existingUsernamesArray.push(res[i].username);
       existingPasswordsArray.push(res[i].password);
     }
-
     for (var i = 0; i < existingUsernamesArray.length; i++) {
       if (
         userProfile.userId === existingUsernamesArray[i] &&
         userProfile.password === existingPasswordsArray[i]
       ) {
+        console.log("PLEASE PUT CODE HERE");
         currentUser.push(res[i].name);
-        currentUser.push(res[i].meditationvid);
-        currentUser.push(res[i].exercisevid);
+        currentUser.push(res[i].videoLink1);
+        currentUser.push(res[i].videoLink2);
         var profile = {
           currentUser: currentUser
         };
@@ -218,7 +227,17 @@ router.post("/api/login", function(req, res) {
     currentUser.push(count);
     console.log(res);
   });
+  // if (count === existingUsernamesArray.length) {
+  //   $(".wrong-loginInfo-text").remove();
+  //   var loginErrorContainer = $("<small>");
+  //   loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
+  //   loginErrorContainer.text(
+  //     "Your username and/or password information are incorrect. Please try again."
+  //   );
+  //   $(".password-div").append(loginErrorContainer);
+  // }
 });
+// ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
