@@ -143,6 +143,14 @@ router.post("/api/login", function(req, res) {
   // ----------------------------------------------------------------------
   var userProfile = req.body;
   let count = 0;
+
+  function renderResult(currentUser) {
+    console.log(currentUser);
+    var profile = {
+      currentUser: currentUser
+    };
+    res.render("result", profile);
+  }
   userInfo.all(function(res) {
     var existingUsernamesArray = [];
     var existingPasswordsArray = [];
@@ -156,20 +164,16 @@ router.post("/api/login", function(req, res) {
         userProfile.userId === existingUsernamesArray[i] &&
         userProfile.password === existingPasswordsArray[i]
       ) {
-        console.log("PLEASE PUT CODE HERE");
         currentUser.push(res[i].name);
-        currentUser.push(res[i].videoLink1);
-        currentUser.push(res[i].videoLink2);
-        var profile = {
-          currentUser: currentUser
-        };
-        res.render("result", profile);
+        currentUser.push(res[i].meditationvid);
+        currentUser.push(res[i].exercisevid);
+        renderResult(currentUser);
       } else {
         count++;
       }
     }
     currentUser.push(count);
-    console.log(res);
+    // console.log(res);
   });
 });
 // ----------------------------------------------------------------------
