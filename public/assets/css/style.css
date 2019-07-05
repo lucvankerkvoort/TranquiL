@@ -234,11 +234,12 @@ body {
   
   .result-card {
       width: 400px;
-      height: 420px;
+      height: 435px;
       padding: 15px;
       margin: 10px;
       align-content: center;
-      background-color: rgba(152, 191, 234, 0.2);
+      background-color: rgba(152, 191, 234, 0.5);
+      font-size: 16px;
   }
   
   .card-content {
