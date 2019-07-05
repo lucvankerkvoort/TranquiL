@@ -2,10 +2,11 @@
 
     <!-- Header Nav Section    -->
     <nav class="mainHeader z-depth-0">
-        
+
         <div class="nav-wrapper">
 
-            <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
+            <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275"
+                    alt="Tranquil"></a>
 
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="black-text" href="/">Home</a></li>
@@ -14,7 +15,7 @@
         </div>
 
     </nav>
-	
+
 </header>
 
 
@@ -128,20 +129,20 @@
                 {
                     name: "Speed",
                     //this is the user's score//
-                    data: [75],
-                    dataLabels: {
-                        format:
-                            '<div style="text-align:center"><span style="font-size:25px;color:' +
-                            ((Highcharts.theme &&
-                                Highcharts.theme.contrastTextColor) ||
-                                "black") +
-                            '">{y}</span><br/>' +
-                            '<span style="font-size:12px;color:silver">stress meter</span></div>'
-                    },
-                    tooltip: {
-                        valueSuffix: " stress meter"
-                    }
-                }
+                    data: [{{ user.score }}],
+            dataLabels: {
+                format:
+                    '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme &&
+                        Highcharts.theme.contrastTextColor) ||
+                        "black") +
+                    '">{y}</span><br/>' +
+                    '<span style="font-size:12px;color:silver">stress meter</span></div>'
+            },
+            tooltip: {
+                valueSuffix: " stress meter"
+            }
+        }
             ]
         })
     );
