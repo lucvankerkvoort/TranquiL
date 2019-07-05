@@ -13,5 +13,3 @@ VALUES ("normal", 0, 25, "c1Ndym-IsQg", "KVG-geWTsA4", "Your stress levels are p
 
 INSERT INTO user_info (username, password, name, score)
 VALUES ("jonathan123", "hello1", "jonathan", 50), ("luc123", "hello2", "luc", 75), ("greg123", "hello3", "greg", 25), ("lynne125", "hello4", "lynne", 15)
-
-UPDATE user_info SET meditationvid = c1Ndym-IsQg WHERE id = 4

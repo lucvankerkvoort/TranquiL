@@ -136,52 +136,6 @@ router.post("/api/registration", function(req, res) {
       // ----------------------------------------------------------------------
     }
   });
-  var existingUsernamesArray = [];
-
-  // User Registration Authentication
-  // ----------------------------------------------------------------------
-
-  for (var i = 0; i < userInformation.length; i++) {
-    existingUsernamesArray.push(userInformation[i].username);
-  }
-
-  if (
-    existingUsernamesArray.includes(userInfo.userId) === false &&
-    (userInfo.password.length >= 8 && userInfo.password.length <= 20)
-  ) {
-    // ----------------------------------------------------------------------
-    // Here we connect to the database using the ORM and sending all the data to the table
-    userInfo.create(
-      ["username", "password", "name"],
-      [userProfile.userId, userProfile.password, userProfile.name],
-      function(result) {
-        // We get back the ID of the user so we can match the score from the survey with the username password
-        id = result.insertId;
-        console.log({ id });
-        res.json(id);
-      }
-    );
-    // ROUTE TO SURVEY PAGE
-    // The route goes to the survey since username and password pass the criteria
-  } else if (
-    existingUsernamesArray.includes(userInfo.userId) === true &&
-    (userInfo.password.length >= 8 && userInfo.password.length <= 20)
-  ) {
-    res.send(["THIS USERNAME IS ALREADY TAKEN. PLEASE ENTER ANOTHER USERNAME"]);
-  } else if (
-    existingUsernameArray.includes(userInfo.userId) === false &&
-    (userInfo.password.length < 8 || userInfo.password.length > 20)
-  ) {
-    res.send(["Your password is an invalid length!"]);
-  } else if (
-    existingUsernamesArray.includes(userInfo.userId) === true &&
-    (userInfo.password.length < 8 || userInfo.password.length > 20)
-  ) {
-    res.send([
-      "This username is already taken. Please go bo back to the login screen or use a different username.",
-      "Your password is an invalid length!"
-    ]);
-  }
 });
 
 router.post("/api/login", function(req, res) {
@@ -189,16 +143,22 @@ router.post("/api/login", function(req, res) {
   // ----------------------------------------------------------------------
   var userProfile = req.body;
   let count = 0;
+
+  function renderResult(currentUser) {
+    console.log(currentUser);
+    var profile = {
+      currentUser: currentUser
+    };
+    res.render("result", profile);
+  }
   userInfo.all(function(res) {
     var existingUsernamesArray = [];
     var existingPasswordsArray = [];
     var currentUser = [];
-
     for (var i = 0; i < res.length; i++) {
       existingUsernamesArray.push(res[i].username);
       existingPasswordsArray.push(res[i].password);
     }
-
     for (var i = 0; i < existingUsernamesArray.length; i++) {
       if (
         userProfile.userId === existingUsernamesArray[i] &&
@@ -207,18 +167,16 @@ router.post("/api/login", function(req, res) {
         currentUser.push(res[i].name);
         currentUser.push(res[i].meditationvid);
         currentUser.push(res[i].exercisevid);
-        var profile = {
-          currentUser: currentUser
-        };
-        res.render("result", profile);
+        renderResult(currentUser);
       } else {
         count++;
       }
     }
     currentUser.push(count);
-    console.log(res);
+    // console.log(res);
   });
 });
+// ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
@@ -236,8 +194,7 @@ router.post("/api/survey", function(req, res) {
     postToDatabase(score);
   }
 
-  // I have to figure out a way to retrieve the ID of the username and password posted in the registration
-  // so we can link the score to the same row
+  // This updates the user score to the users info in the database
   function postToDatabase(score) {
     userInfo.all(function(data) {
       id = data.pop().id;
