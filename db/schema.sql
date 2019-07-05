@@ -1,6 +1,5 @@
 DROP DATABASE IF EXISTS tranquil_db;
 
-
 CREATE DATABASE tranquil_db;
 
 USE tranquil_db;

@@ -43,7 +43,7 @@ $(document).ready(function() {
             userInput.data.push(userScore);
             
             // console.log(JSON.stringify(userInput));
-
+            // console.log(userInput)
             // Post the UserInput object:
             $.post("/api/survey", userInput, function(data){
                 console.log(userInput)
