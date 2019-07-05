@@ -81,7 +81,7 @@ router.get("/result", function(req, res) {
         console.log({ result });
       }
     );
-
+    console.log(user);
     // We store all the info we want to send off to the HTML/Handlebars page in an object
     var hbsobj = {
       description: descId,
