@@ -112,9 +112,7 @@ router.post("/api/registration", function(req, res) {
       existingUsernamesArray.push(registerInfo[i].username);
     }
     console.log(existingUsernamesArray);
-    console.log(typeof userProfile.name);
-    console.log("this is the name of the user " + userProfile.name);
-    console.log("length of password " + userProfile.password.length);
+
     if (
       existingUsernamesArray.includes(userProfile.name) === false &&
       userProfile.password.length >= 8 &&
@@ -129,11 +127,28 @@ router.post("/api/registration", function(req, res) {
           // We get back the ID of the user so we can match the score from the survey with the username password
           id = result.insertId;
           console.log({ id });
-          res.json(id);
         }
       );
-      // User Registration Authentication
-      // ----------------------------------------------------------------------
+      res.status(200).end();
+    } else if (userProfile.name === "") {
+      var error = "Please enter your name";
+      res.send([error]);
+    } else if (userProfile.userId === "") {
+      var error = "Please enter a userId";
+      res.send([error]);
+    } else if (
+      existingUsernamesArray.includes(userProfile.userId) === true &&
+      userProfile.password.length >= 8 &&
+      userProfile.password.length <= 20
+    ) {
+      var error = "This userId is already taken. Please enter another userId.";
+      res.send([error]);
+    } else if (
+      existingUsernamesArray.includes(userProfile.userId) === false &&
+      (userProfile.password.length < 8 || userProfile.password.length > 20)
+    ) {
+      var error = "Your password is an invalid length.";
+      res.send([error]);
     }
   });
 });

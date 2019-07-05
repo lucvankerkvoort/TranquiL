@@ -19,10 +19,11 @@ $("#register-submit").on("click", function(event) {
   $.ajax("/api/registration", {
     type: "POST",
     data: userInfo
-  }).then(function(data) {
-    if (data) {
-      window.location.href = "/survey";
-    } else $("small").text("insert error message from controller");
+  }).then(function(err, response) {
+    if (err) {
+      $("small").text(err);
+      // window.location.href = "/survey";
+    } else window.location.href = "/survey";
   });
 });
 
