@@ -157,40 +157,83 @@ router.post("/api/login", function(req, res) {
   // User Login Authentication
   // ----------------------------------------------------------------------
   var userProfile = req.body;
-  let count = 0;
+  console.log("userprofile" + userProfile);
 
-  function renderResult(currentUser) {
-    console.log(currentUser);
-    var profile = {
-      currentUser: currentUser
-    };
-    res.render("result", profile);
-  }
-  userInfo.all(function(res) {
+  userInfo.all(function(response) {
     var existingUsernamesArray = [];
     var existingPasswordsArray = [];
-    var currentUser = [];
-    for (var i = 0; i < res.length; i++) {
-      existingUsernamesArray.push(res[i].username);
-      existingPasswordsArray.push(res[i].password);
+    var object = {
+      data: response
+    };
+    var registerInfo = object.data;
+    // console.log(JSON.stringify(object));
+
+    for (var i = 0; i < registerInfo.length; i++) {
+      existingUsernamesArray.push(registerInfo[i].username);
+      existingPasswordsArray.push(registerInfo[i].password);
     }
+    console.log("existing users" + existingUsernamesArray);
     for (var i = 0; i < existingUsernamesArray.length; i++) {
       if (
         userProfile.userId === existingUsernamesArray[i] &&
         userProfile.password === existingPasswordsArray[i]
       ) {
-        currentUser.push(res[i].name);
-        currentUser.push(res[i].meditationvid);
-        currentUser.push(res[i].exercisevid);
-        renderResult(currentUser);
-      } else {
-        count++;
+        console.log("password match");
+        res.status(200).end();
+      } else if (
+        existingUsernamesArray.includes(userProfile.userId) === false
+      ) {
+        var error = "userId does not exist";
+        return res.send(error);
+      } else if (
+        userProfile.userId === existingUsernamesArray[i] &&
+        userProfile.password !== existingPasswordsArray[i]
+      ) {
+        var error = "Incorrect password. Please try again";
+        return res.send(error);
       }
     }
-    currentUser.push(count);
-    // console.log(res);
   });
 });
+
+//GReg and Lucs codebelow//
+
+//   let count = 0;
+
+//   function renderResult(currentUser) {
+//     console.log(currentUser);
+//     var profile = {
+//       currentUser: currentUser
+//     };
+//     res.render("result", profile);
+//   }
+//   userInfo.all(function(res) {
+//     var existingUsernamesArray = [];
+//     var existingPasswordsArray = [];
+//     var currentUser = [];
+//     for (var i = 0; i < res.length; i++) {
+//       existingUsernamesArray.push(res[i].username);
+//       existingPasswordsArray.push(res[i].password);
+//     }
+//     for (var i = 0; i < existingUsernamesArray.length; i++) {
+//       if (
+//         userProfile.userId === existingUsernamesArray[i] &&
+//         userProfile.password === existingPasswordsArray[i]
+//       ) {
+//         currentUser.push(res[i].name);
+//         currentUser.push(res[i].meditationvid);
+//         currentUser.push(res[i].exercisevid);
+//         renderResult(currentUser);
+//       } else {
+//         var error = "userId does not match password. Please try again";
+//         // res.send([error]);
+//         count++;
+//       }
+//     }
+//     currentUser.push(count);
+//     // console.log(res);
+//   });
+// });
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
