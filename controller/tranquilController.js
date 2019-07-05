@@ -162,10 +162,12 @@ router.post("/api/login", function(req, res) {
   userInfo.all(function(response) {
     var existingUsernamesArray = [];
     var existingPasswordsArray = [];
+    var currentUser = [];
     var object = {
       data: response
     };
     var registerInfo = object.data;
+    console.log({ registerInfo });
     // console.log(JSON.stringify(object));
 
     for (var i = 0; i < registerInfo.length; i++) {
@@ -179,6 +181,17 @@ router.post("/api/login", function(req, res) {
         userProfile.password === existingPasswordsArray[i]
       ) {
         console.log("password match");
+        currentUser.push(response[i]);
+        console.log(currentUser);
+        console.log(currentUser[i].name);
+        var idCount = existingUsernamesArray.length + 1;
+        userInfo.update(
+          { id: idCount },
+          ["name = " + "'" + currentUser[i].name + "'"],
+          function(res) {
+            console.log(res);
+          }
+        );
         res.status(200).end();
       } else if (
         existingUsernamesArray.includes(userProfile.userId) === false
