@@ -35,20 +35,20 @@ If successful, we'll redirect to /survey, if not, we'll display an error message
 $("#login-submit").on("click", function(event) {
   console.log("clicked login");
   event.preventDefault();
-  $(".input-field").trigger("reset");
   var loginInput = {
     userId: $("#userId").val(),
     password: $("#password").val()
   };
+  console.log(loginInput);
   $.ajax("/api/login", {
     type: "POST",
     data: loginInput
-  }).then(function(data) {
+  }).then(function(err, response) {
     console.log("sending login info for validation");
     //if the controller verifies the login information as correct we will reload to /survey"
-    if (data) {
-      window.location.href = "/survey";
-    } else $("small").text("Invalid userId and/or password. Please try again");
+    if (err) {
+      $("#error-login").text(err);
+    } else window.location.href = "/result";
   });
 });
 
@@ -99,33 +99,3 @@ function yoga(data) {
 function exercise(data) {
   console.log(data);
 }
-
-// function takenUsername() {
-//   // var wrongUsernameContainer = $("<small>");
-//   wrongUsernameContainer.addClass(
-//     "form-text text-muted existing-username-text"
-//   );
-//   wrongUsernameContainer.text(
-//     "This username is already taken. Please go bo back to the login screen or use a different username."
-//   );
-//   $(".username-input-form").append(wrongUsernameContainer);
-// }
-
-// function checkPasswordLength() {
-//   // var invalidPasswordContainer = $("<small>");
-//   invalidPasswordContainer.addClass(
-//     "form-text text-muted password-length-wrong"
-//   );
-//   invalidPasswordContainer.text("Your password is an invalid length!");
-//   $("#passwordHelpBlock").append(invalidPasswordContainer);
-// }
-
-// function wrongUsernamePassword() {
-//   $(".wrong-loginInfo-text").remove();
-//   // var loginErrorContainer = $("<small>");
-//   loginErrorContainer.addClass("form-text text-muted wrong-loginInfo-text");
-//   loginErrorContainer.text(
-//     "Your username and/or password information are incorrect. Please try again."
-//   );
-//   $(".user-login-password-container").append(loginErrorContainer);
-// }
