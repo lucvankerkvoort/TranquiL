@@ -2,11 +2,10 @@
 
     <!-- Header Nav Section    -->
     <nav class="mainHeader z-depth-0">
-
+        
         <div class="nav-wrapper">
 
-            <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275"
-                    alt="Tranquil"></a>
+            <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="black-text" href="/">Home</a></li>
@@ -15,39 +14,52 @@
         </div>
 
     </nav>
-
+	
 </header>
 
 
 
 <!--div for stress meter, boiler plate -->
-<div class="container">
+<div class="container results-container">
     <!-- Page Content goes here -->
-    <div class="row">
-        <div class="col s4">
-            <!-- Stress Meter Content -->
-            <div class="outer">
-                <div id="container-speed" class="chart-container"></div>
+    <div class="row results-row">
+        <div class="col s12 m6 l4 cards-container">
+            <div class="card result-card z-depth-0 ">
+                <div class="card-content white-text">
+                    <!-- Stress Meter Content -->
+                    <div class="outer">
+                        <div id="container-speed" class="chart-container"></div>
+                    </div>
+                    <p class="light-center">
+                        {{description}}
+                    </p>
+                    <a class="btn waves-effect light-blue darken-2" href="/survey" id="retake-survey">Retake Survey</a>
+                </div>
             </div>
-            <p class="light-center">
-                {{description}}
-            </p>
         </div>
-        <div class="col s4">
-            <!-- Meditation Content -->
-            <div id="meditation-player"></div>
-            <p class="light-center">
-                Meditation description!
-            </p>
+        <div class="col s12 m6 l4 cards-container">
+            <div class="card result-card z-depth-0">
+                <div class="card-content white-text">
+                    <!-- Meditation Content -->
+                    <div id="meditation-player"></div>
+                    <p class="light-center">
+                        Meditation description!
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <div class="col s4">
-            <!-- Youtube Exercise/Yoga Content -->
-            <div id="exercise-player"></div>
+        <div class="col s12 m6 l4 cards-container">
+            <div class="card result-card z-depth-0">
+                <div class="card-content white-text">
+                    <!-- Youtube Exercise/Yoga Content -->
+                    <div id="exercise-player"></div>
 
-            <p class="light-center">
-                Exercise is important!
-            </p>
+                    <p class="light-center">
+                        Exercise is important!
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -130,19 +142,19 @@
                     name: "Speed",
                     //this is the user's score//
                     data: [{{ user.score }}],
-            dataLabels: {
-                format:
-                    '<div style="text-align:center"><span style="font-size:25px;color:' +
-                    ((Highcharts.theme &&
-                        Highcharts.theme.contrastTextColor) ||
-                        "black") +
-                    '">{y}</span><br/>' +
-                    '<span style="font-size:12px;color:silver">stress meter</span></div>'
-            },
-            tooltip: {
-                valueSuffix: " stress meter"
-            }
-        }
+                    dataLabels: {
+                        format:
+                            '<div style="text-align:center"><span style="font-size:25px;color:' +
+                            ((Highcharts.theme &&
+                                Highcharts.theme.contrastTextColor) ||
+                                "black") +
+                            '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver">stress meter</span></div>'
+                    },
+                    tooltip: {
+                        valueSuffix: " stress meter"
+                    }
+                }
             ]
         })
     );
