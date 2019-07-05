@@ -1,36 +1,21 @@
-<header>Result Page</header>
+<header>
 
-<nav class="navbar">
-    <div id="logoNav">
-        <h1>(Logo) Tranquil</h1>
-    </div>
-    <!--Nav Bar-->
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="#signUpModal">Sign Up</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active " href="main.html">Home</a>
-        </li>
-    </ul>
-</nav>
+    <!-- Header Nav Section    -->
+    <nav class="mainHeader z-depth-0">
+        
+        <div class="nav-wrapper">
 
+            <a href="/" class="brand-logo"><img src="/assets/images/Tranquil_Logo.png" height="auto" width="275" alt="Tranquil"></a>
 
-<!-- Header Nav Section    -->
-<nav class="mainHeader z-depth-0">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="black-text" href="/">Home</a></li>
+            </ul>
 
-    <div class="nav-wrapper">
+        </div>
 
-        <a href="/" class="brand-logo black-text">(Logo) Tranquil</a>
-
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a class="black-text" href="/">Home</a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
+	
+</header>
 
 
 
@@ -44,16 +29,14 @@
                 <div id="container-speed" class="chart-container"></div>
             </div>
             <p class="light-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
+                {{description}}
             </p>
         </div>
         <div class="col s4">
             <!-- Meditation Content -->
             <div id="meditation-player"></div>
             <p class="light-center">
-                {{description}}
+                Meditation description!
             </p>
         </div>
 
@@ -62,11 +45,7 @@
             <div id="exercise-player"></div>
 
             <p class="light-center">
-                Sed turpis tincidunt id aliquet risus feugiat in. Odio
-                tempor orci dapibus ultrices in iaculis nunc sed augue.
-                Vulputate mi sit amet mauris commodo. Mattis enim ut
-                tellus elementum sagittis vitae. Semper auctor neque
-                vitae tempus
+                Exercise is important!
             </p>
         </div>
     </div>
@@ -135,7 +114,7 @@
         Highcharts.merge(gaugeOptions, {
             yAxis: {
                 min: 0,
-                max: 200,
+                max: 100,
                 title: {
                     text: ""
                 }
@@ -149,7 +128,7 @@
                 {
                     name: "Speed",
                     //this is the user's score//
-                    data: [150],
+                    data: [75],
                     dataLabels: {
                         format:
                             '<div style="text-align:center"><span style="font-size:25px;color:' +
