@@ -182,12 +182,13 @@ router.post("/api/login", function(req, res) {
       ) {
         console.log("password match");
         currentUser.push(response[i]);
-        console.log(currentUser);
-        console.log(currentUser[i].name);
-        var idCount = existingUsernamesArray.length + 1;
+        console.log(currentUser[0].name);
+        var idCount = registerInfo.pop().id;
+        idCount += 1;
+        console.log(idCount);
         userInfo.update(
           { id: idCount },
-          ["name = " + "'" + currentUser[i].name + "'"],
+          ["name = " + "'" + currentUser[0].name + "'"],
           function(res) {
             console.log(res);
           }
