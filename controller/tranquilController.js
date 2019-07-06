@@ -30,6 +30,7 @@ router.get("/result", function(req, res) {
     var user = result.pop();
     console.log(user.meditationvid);
     console.log(user.exercisevid);
+    // If the user already has video's in his data row, we don't add new ones.
     if (user.meditationvid !== null && user.exercisevid !== null) {
       check = false;
       console.log(check);
@@ -108,17 +109,17 @@ router.get("/result", function(req, res) {
   // We render the page with the object in it.
   function renderPage(currentUser, result) {
     if (check) {
-      // console.log("I'm running");
       res.render("result", currentUser);
     } else {
+      // If we chose to log back in, we grab the description from the database
       var description = [];
       for (let i = 0; i < result.length; i++) {
         if (result[i].meditation.indexOf(currentUser.meditationvid) !== -1) {
-          console.log("i runs");
+          // push it into an empty array
           description.push(result[i].description);
         }
       }
-      console.log(description);
+      // Put it inside our object
       var hbsobj = {
         meditation: currentUser.meditationvid,
         exercise: currentUser.exercisevid,
@@ -126,6 +127,7 @@ router.get("/result", function(req, res) {
         description: description
       };
       console.log({ hbsobj });
+      // that we send over to the results.handlebars page
       res.render("result", hbsobj);
     }
   }
