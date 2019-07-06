@@ -1,9 +1,9 @@
 # TranquiL
-Sometimes we just need to slow life down and take a break from this stressful world. A guided solution for stress management, Tranquil is an app that promotes anything peaceful. Users will complete an assessment to determine stress levels and will be provided with a video to correspond to helping them get to a better state of mind (i.e, Yoga, Mediation, and exercise).
+Sometimes we just need to slow life down and take a break from this stressful world. A guided solution for stress management, Tranquil is an app that promotes anything peaceful. Users will complete an assessment to determine stress levels and will be provided with a video to correspond to helping them get to a better state of mind (i.e. yoga, mediation, and exercise).
 
-<img src="assets/images/Tranquil.jpg">
+<img src="/public/assets/images/Tranquil.jpg">
 
-To view live application:  
+To view live application:  https://rugged-gunnison-25361.herokuapp.com/
 
 1. App allows user to register and login. 
 
