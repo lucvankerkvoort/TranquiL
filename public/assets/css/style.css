@@ -81,8 +81,10 @@ body {
   } */
   
   #loginCard {
-    margin-top: 200px;
-    background-color: rgba(152, 191, 234, 0.5);
+    padding: 20px;
+    margin-top: 175px;
+    background-color: rgba(200,217,247,0.8);
+    /* rgba(152, 191, 234, 0.5); */
     color: black;
     width: 500px;
   }
@@ -98,39 +100,39 @@ body {
   
   /* label focus color */
   .input-field input[type=text]:focus + label {
-  color: #0277bd !important;
+  color: #054973 !important;
   }
   /* label underline focus color */
   .input-field input[type=text]:focus {
-  border-bottom: 1px solid #0277bd !important;
-  box-shadow: 0 1px 0 0 #0277bd !important;
+  border-bottom: 1px solid #054973 !important;
+  box-shadow: 0 1px 0 0 #054973 !important;
   }
   /* valid color */
   .input-field input[type=text].valid {
-  border-bottom: 1px solid #0277bd !important;
-  box-shadow: 0 1px 0 0 #0277bd !important;
+  border-bottom: 1px solid #054973 !important;
+  box-shadow: 0 1px 0 0 #054973 !important;
   }
   
   /* label focus color */
   .input-field input[type=password]:focus + label {
-  color: #0277bd !important;
+  color: #054973 !important;
   }
   
   /* label underline focus color */
   .input-field input[type=password]:focus {
-  border-bottom: 1px solid #0277bd !important;
-  box-shadow: 0 1px 0 0 #0277bd !important;
+  border-bottom: 1px solid #054973 !important;
+  box-shadow: 0 1px 0 0 #054973 !important;
   }
   
   /* valid color */
   .input-field input[type=password].valid {
-  border-bottom: 1px solid #0277bd !important;
-  box-shadow: 0 1px 0 0 #0277bd !important;
+  border-bottom: 1px solid #054973 !important;
+  box-shadow: 0 1px 0 0 #054973 !important;
   }
   
   /* icon prefix focus color */
   .input-field .prefix.active {
-    color: #0277bd !important;
+    color: #054973 !important;
   }
   
   /* class for login error user alert message */
@@ -168,7 +170,9 @@ body {
   }
   
   .carousel-item {
-    background-color: rgba(152, 191, 234, 0.3);
+    background-color: rgba(5, 73, 115, 0.2);
+    
+    /* rgba(152, 191, 234, 0.4); */
   }
   
   .survey-question {
@@ -238,7 +242,7 @@ body {
       padding: 15px;
       margin: 10px;
       align-content: center;
-      background-color: rgba(152, 191, 234, 0.5);
+      background-color: rgba(5, 73, 115, 0.7);
       font-size: 16px;
   }
   
@@ -286,9 +290,9 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgba(152, 191, 234, 0.6);
-    background-color: rgba(152, 191, 234, 0.6);
-    color: black;
+    /* background-color: rgba(152, 191, 234, 0.6); */
+    background-color: rgba(5,73,115,0.6);
+    color: white;
     height: 40px;
     margin-top: 20px;
   }
