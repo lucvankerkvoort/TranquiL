@@ -147,14 +147,16 @@ router.post("/api/registration", function(req, res) {
       data: response
     };
     var registerInfo = object.data;
+    console.log("test");
+    console.log(registerInfo);
     console.log(JSON.stringify(object));
     for (var i = 0; i < registerInfo.length; i++) {
       existingUsernamesArray.push(registerInfo[i].username);
     }
-    console.log(existingUsernamesArray);
+    console.log("array" + existingUsernamesArray);
 
     if (
-      existingUsernamesArray.includes(userProfile.name) === false &&
+      existingUsernamesArray.includes(userProfile.userId) === false &&
       userProfile.password.length >= 8 &&
       userProfile.password.length <= 20
     ) {
@@ -170,25 +172,25 @@ router.post("/api/registration", function(req, res) {
         }
       );
       res.status(200).end();
-    } else if (userProfile.name === "") {
-      var error = "Please enter your name";
-      res.send([error]);
-    } else if (userProfile.userId === "") {
-      var error = "Please enter a userId";
-      res.send([error]);
     } else if (
       existingUsernamesArray.includes(userProfile.userId) === true &&
       userProfile.password.length >= 8 &&
       userProfile.password.length <= 20
     ) {
       var error = "This userId is already taken. Please enter another userId.";
-      res.send([error]);
+      res.send(error);
+    } else if (userProfile.name === "") {
+      var error = "Please enter your name";
+      res.send(error);
+    } else if (userProfile.userId === "") {
+      var error = "Please enter a userId";
+      res.send(error);
     } else if (
       existingUsernamesArray.includes(userProfile.userId) === false &&
       (userProfile.password.length < 8 || userProfile.password.length > 20)
     ) {
       var error = "Your password is an invalid length.";
-      res.send([error]);
+      res.send(error);
     }
   });
 });

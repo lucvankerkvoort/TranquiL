@@ -22,7 +22,6 @@ $("#register-submit").on("click", function(event) {
   }).then(function(err, response) {
     if (err) {
       $("small").text(err);
-      // window.location.href = "/survey";
     } else window.location.href = "/survey";
   });
 });
