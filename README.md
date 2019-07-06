@@ -18,6 +18,7 @@ To view live application:  https://rugged-gunnison-25361.herokuapp.com/
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - The programming language used for all logic of the application.
 * [Materialize](https://materializecss.com/) - Used components from toolkit for developing the HTML layout. 
 * [Handlebars](https://handlebarsjs.com/) - used for the HTML rendering of the results page. 
+* [MYSQL](https://www.mysql.com/) - used for the database.
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/css) - used for styling of the application.
 * [Adobe Fonts](https://fonts.adobe.com/) - Used to generate font styles.
 * [YouTube](https://developers.google.com/youtube/v3/) - Wireframe used for the video presentations. 
