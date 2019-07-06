@@ -24,15 +24,23 @@ router.get("/survey", function(req, res) {
 // We set the route to our results page
 router.get("/result", function(req, res) {
   // we grab the last user from the user_info table
+  var check = true;
   userInfo.all(function(result) {
     // we store it into a container
     var user = result.pop();
-
-    // We grab the video's from the data_output table
-    dataOutput.all(function(result) {
-      // We set both the values as parameters for our invoked function so we can manipulate the data for our own use
-      renderResult(user, result);
-    });
+    console.log(user.meditationvid);
+    console.log(user.exercisevid);
+    if (user.meditationvid !== null && user.exercisevid !== null) {
+      check = false;
+      console.log(check);
+      renderPage(user);
+    } else {
+      // We grab the video's from the data_output table
+      dataOutput.all(function(result) {
+        // We set both the values as parameters for our invoked function so we can manipulate the data for our own use
+        renderResult(user, result);
+      });
+    }
   });
 
   // We create the function with parameters
@@ -72,27 +80,48 @@ router.get("/result", function(req, res) {
     // This is the current users id
     var id = user.id;
 
-    // and into the user_info table so that they are connected to the user
-    // This is for reusability of the video's when the user log's back in
-    userInfo.update(
-      { meditationvid: medId, exercisevid: exeId },
-      ["id =" + id],
-      function(result) {
-        console.log({ result });
-      }
-    );
-    console.log(user);
-    // We store all the info we want to send off to the HTML/Handlebars page in an object
     var hbsobj = {
       description: descId,
       meditation: medId,
       exercise: exeId,
       user: user
     };
-    // We render the page with the object in it.
-    res.render("result", hbsobj);
+
+    // and into the user_info table so that they are connected to the user
+    // This is for reusability of the video's when the user log's back in
+    userInfo.update(
+      { meditationvid: medId, exercisevid: exeId },
+      ["id =" + id],
+      function(result) {
+        // console.log({ result });
+        renderPage(hbsobj);
+      }
+    );
+
+    console.log(hbsobj);
+    // console.log(user);
+  }
+  // We store all the info we want to send off to the HTML/Handlebars page in an object
+
+  // We render the page with the object in it.
+  function renderPage(hbsobj) {
+    if (check) {
+      console.log("I'm running");
+      // console.log({ hbsobj });
+      res.render("result", hbsobj);
+    } else {
+      console.log("me running");
+      var hbsobj = {
+        meditation: hbsobj.meditationvid,
+        exercise: hbsobj.exercisevid,
+        user: hbsobj
+      };
+      console.log({ hbsobj });
+      res.render("result", hbsobj);
+    }
   }
 });
+
 // API ROUTES
 // ----------------------------------------------------------------------
 // This is the post request for the registration
