@@ -33,7 +33,9 @@ router.get("/result", function(req, res) {
     if (user.meditationvid !== null && user.exercisevid !== null) {
       check = false;
       console.log(check);
-      renderPage(user);
+      dataOutput.all(function(result) {
+        renderPage(user, result);
+      });
     } else {
       // We grab the video's from the data_output table
       dataOutput.all(function(result) {
@@ -104,17 +106,24 @@ router.get("/result", function(req, res) {
   // We store all the info we want to send off to the HTML/Handlebars page in an object
 
   // We render the page with the object in it.
-  function renderPage(hbsobj) {
+  function renderPage(currentUser, result) {
     if (check) {
-      console.log("I'm running");
-      // console.log({ hbsobj });
-      res.render("result", hbsobj);
+      // console.log("I'm running");
+      res.render("result", currentUser);
     } else {
-      console.log("me running");
+      var description = [];
+      for (let i = 0; i < result.length; i++) {
+        if (result[i].meditation.indexOf(currentUser.meditationvid) !== -1) {
+          console.log("i runs");
+          description.push(result[i].description);
+        }
+      }
+      console.log(description);
       var hbsobj = {
-        meditation: hbsobj.meditationvid,
-        exercise: hbsobj.exercisevid,
-        user: hbsobj
+        meditation: currentUser.meditationvid,
+        exercise: currentUser.exercisevid,
+        user: currentUser,
+        description: description
       };
       console.log({ hbsobj });
       res.render("result", hbsobj);
@@ -239,45 +248,6 @@ router.post("/api/login", function(req, res) {
   });
 });
 
-//GReg and Lucs codebelow//
-
-//   let count = 0;
-
-//   function renderResult(currentUser) {
-//     console.log(currentUser);
-//     var profile = {
-//       currentUser: currentUser
-//     };
-//     res.render("result", profile);
-//   }
-//   userInfo.all(function(res) {
-//     var existingUsernamesArray = [];
-//     var existingPasswordsArray = [];
-//     var currentUser = [];
-//     for (var i = 0; i < res.length; i++) {
-//       existingUsernamesArray.push(res[i].username);
-//       existingPasswordsArray.push(res[i].password);
-//     }
-//     for (var i = 0; i < existingUsernamesArray.length; i++) {
-//       if (
-//         userProfile.userId === existingUsernamesArray[i] &&
-//         userProfile.password === existingPasswordsArray[i]
-//       ) {
-//         currentUser.push(res[i].name);
-//         currentUser.push(res[i].meditationvid);
-//         currentUser.push(res[i].exercisevid);
-//         renderResult(currentUser);
-//       } else {
-//         var error = "userId does not match password. Please try again";
-//         // res.send([error]);
-//         count++;
-//       }
-//     }
-//     currentUser.push(count);
-//     // console.log(res);
-//   });
-// });
-// ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // We run logic to calculate the user score and push it into the database
 router.post("/api/survey", function(req, res) {
